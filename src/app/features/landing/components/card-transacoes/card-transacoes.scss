@@ -1,0 +1,50 @@
+.card-animado {
+  background: linear-gradient(160deg, #00132E, #001738);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 1.5rem;
+  height: 280px;
+  overflow: hidden;
+  mask: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgb(0,0,0) 15%, rgb(0,0,0) 85%, rgba(0,0,0,0) 100%);
+
+  .card-titulo {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .lista-transacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: scroll-up 15s linear infinite;
+  }
+
+  .transacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+
+    .desc { flex: 1; color: white; font-weight: 500; }
+
+    .pill {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+
+      .emoji { font-size: 0.8rem; }
+      .cat { font-weight: 600; font-size: 0.75rem; }
+    }
+
+    .valor { min-width: 90px; text-align: right; color: white; font-weight: 600; font-size: 0.85rem; }
+  }
+}

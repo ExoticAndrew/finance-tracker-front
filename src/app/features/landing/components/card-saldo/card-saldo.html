@@ -1,0 +1,16 @@
+<div class="card-func card-saldo">
+  <p class="saldo-label">Saldo disponível</p>
+  <p class="saldo-valor">{{ formatarSaldo(saldo) }}</p>
+
+  @if (mostrarTransacao && transacaoAtual) {
+    <div class="transacao-badge"
+      [class.receita]="transacaoAtual.tipo === 'receita'"
+      [class.despesa]="transacaoAtual.tipo === 'despesa'">
+      <span>{{ transacaoAtual.emoji }}</span>
+      <span>{{ transacaoAtual.descricao }}</span>
+      <span>{{ transacaoAtual.valor > 0 ? '+' : '' }}{{ formatarSaldo(transacaoAtual.valor) }}</span>
+    </div>
+  }
+
+  <p class="saldo-desc">Saiba quanto você tem disponível agora, sem precisar abrir o aplicativo do banco.</p>
+</div>

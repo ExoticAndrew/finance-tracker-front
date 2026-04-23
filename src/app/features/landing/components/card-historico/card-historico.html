@@ -1,0 +1,19 @@
+<div class="card-func card-historico">
+  <p class="historico-titulo">Histórico completo</p>
+  <div class="filtros">
+    @for (cat of categorias; track cat) {
+      <span class="filtro-pill" [class.ativo]="cat === categoriaAtiva"
+        (click)="categoriaAtiva = cat">
+        {{ cat }}
+      </span>
+    }
+  </div>
+  <div class="historico-lista">
+    @for (t of transacoesFiltradas; track t.descricao) {
+      <div class="historico-item">
+        <span class="desc">{{ t.emoji }} {{ t.descricao }}</span>
+        <span class="valor-hist" [style.color]="t.cor">{{ t.valor }}</span>
+      </div>
+    }
+  </div>
+</div>

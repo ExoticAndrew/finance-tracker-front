@@ -1,0 +1,20 @@
+<div class="card-func card-categorias">
+  <div class="cat-header">
+    <p class="cat-titulo">Categorias inteligentes</p>
+    <span class="periodo-badge">{{ periodoAtivo }}</span>
+  </div>
+  <div class="cat-lista">
+    @for (c of categoriasAtivas; track c.nome) {
+      <div class="cat-item">
+        <div class="cat-info">
+          <span class="cat-emoji">{{ c.emoji }}</span>
+          <span class="cat-nome">{{ c.nome }}</span>
+          <span class="cat-valor">R$ {{ c.valor.toFixed(2) }}</span>
+        </div>
+        <div class="barra-bg">
+          <div class="barra-fill" [style.width.%]="c.porcentagem"></div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

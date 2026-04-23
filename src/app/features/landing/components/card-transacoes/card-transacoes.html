@@ -1,0 +1,25 @@
+<div class="card-func card-animado">
+  <p class="card-titulo">Transações recentes</p>
+  <div class="lista-transacoes">
+    @for (t of transacoes; track t.descricao) {
+      <div class="transacao">
+        <span class="desc">{{ t.descricao }}</span>
+        <span class="pill" [style.background-color]="t.cor + '20'">
+          <span class="emoji">{{ t.emoji }}</span>
+          <span class="cat" [style.color]="t.cor">{{ t.categoria }}</span>
+        </span>
+        <span class="valor">{{ t.valor }}</span>
+      </div>
+    }
+    @for (t of transacoes; track t.descricao + '_clone') {
+      <div class="transacao">
+        <span class="desc">{{ t.descricao }}</span>
+        <span class="pill" [style.background-color]="t.cor + '20'">
+          <span class="emoji">{{ t.emoji }}</span>
+          <span class="cat" [style.color]="t.cor">{{ t.categoria }}</span>
+        </span>
+        <span class="valor">{{ t.valor }}</span>
+      </div>
+    }
+  </div>
+</div>
