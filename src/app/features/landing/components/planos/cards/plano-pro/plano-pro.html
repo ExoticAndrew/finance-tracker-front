@@ -1,0 +1,23 @@
+<div class="card-plano card-pro" appAnimarAoEntrar>
+  <div class="badge-popular">⭐ Mais popular</div>
+
+  <div class="plano-header">
+    <p class="plano-nome">Pro</p>
+    <div class="plano-preco">
+      <span class="preco-valor">R$ 9,90</span>
+      <span class="preco-periodo">/mês</span>
+    </div>
+    <p class="plano-desc">Para quem quer controle total das finanças</p>
+  </div>
+
+  <ul class="plano-features">
+    @for (f of funcionalidades; track f) {
+      <li>
+        <span class="check">✓</span>
+        <span>{{ f }}</span>
+      </li>
+    }
+  </ul>
+
+  <button class="btn-plano">Começar agora</button>
+</div>

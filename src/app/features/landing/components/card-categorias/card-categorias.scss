@@ -1,7 +1,17 @@
+:host {
+  display: contents;
+}
+
 .card-categorias {
   background: linear-gradient(160deg, #0B1220, #0E1628);
   border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: left;
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transition: border-color 0.3s;
+
+  &:hover { border-color: rgba(59, 130, 246, 0.3); }
 
   .cat-header {
     display: flex;
@@ -25,7 +35,6 @@
       font-weight: 600;
       padding: 0.2rem 0.6rem;
       border-radius: 999px;
-      transition: all 0.3s ease;
     }
   }
 
@@ -48,6 +57,13 @@
         .cat-emoji { font-size: 0.9rem; }
         .cat-nome { color: white; font-size: 0.85rem; font-weight: 500; flex: 1; }
         .cat-valor { color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 600; }
+        .cat-pct {
+          color: rgba(59, 130, 246, 0.8);
+          font-size: 0.75rem;
+          font-weight: 700;
+          min-width: 35px;
+          text-align: right;
+        }
       }
 
       .barra-bg {
@@ -66,4 +82,9 @@
       }
     }
   }
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }

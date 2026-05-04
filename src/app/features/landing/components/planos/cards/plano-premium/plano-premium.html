@@ -1,0 +1,21 @@
+<div class="card-plano card-premium" appAnimarAoEntrar>
+  <div class="plano-header">
+    <p class="plano-nome">Premium</p>
+    <div class="plano-preco">
+      <span class="preco-valor">R$ 19,90</span>
+      <span class="preco-periodo">/mês</span>
+    </div>
+    <p class="plano-desc">Para quem quer o máximo de controle e recursos</p>
+  </div>
+
+  <ul class="plano-features">
+    @for (f of funcionalidades; track f) {
+      <li>
+        <span class="check">✓</span>
+        <span>{{ f }}</span>
+      </li>
+    }
+  </ul>
+
+  <button class="btn-plano">Assinar Premium</button>
+</div>

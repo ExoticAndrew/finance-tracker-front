@@ -1,0 +1,26 @@
+<div class="card-resumo" appAnimarAoEntrar>
+  <div class="card-header">
+    <p class="card-titulo">Resumo do mês</p>
+    <span class="card-badge">Abril 2026</span>
+  </div>
+
+  <div class="resumo-lista">
+    <div class="resumo-item receita">
+      <span class="resumo-label">💰 Receitas</span>
+      <span class="resumo-valor">{{ formatar(resumo.receitas) }}</span>
+    </div>
+    <div class="resumo-item despesa">
+      <span class="resumo-label">💸 Despesas</span>
+      <span class="resumo-valor">{{ formatar(resumo.despesas) }}</span>
+    </div>
+    <div class="divisor"></div>
+    <div class="resumo-item saldo">
+      <span class="resumo-label">📊 Saldo</span>
+      <span class="resumo-valor">{{ formatar(resumo.saldo) }}</span>
+    </div>
+    <div class="resumo-item economia">
+      <span class="resumo-label">🎯 Economia</span>
+      <span class="resumo-valor">{{ resumo.economia }}% da renda</span>
+    </div>
+  </div>
+</div>

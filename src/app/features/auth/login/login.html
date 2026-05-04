@@ -1,0 +1,24 @@
+<div class="auth-wrapper">
+  <div class="auth-lado-esquerdo">
+    <div class="logo" (click)="irParaLanding()">Fintrack</div>
+    <div class="auth-texto">
+      <h1>Pare de perder dinheiro<br>
+        <span class="gradiente">sem saber por quê.</span>
+      </h1>
+      <p>Usuários do Fintrack economizam em média <strong>R$ 400</strong> no primeiro mês.</p>
+      <app-login-stats></app-login-stats>
+    </div>
+  </div>
+
+  <div class="auth-lado-direito">
+    <app-login-form
+      (abrirTermos)="abrirTermos()"
+      (abrirPrivacidade)="abrirPrivacidade()">
+    </app-login-form>
+  </div>
+</div>
+
+<app-login-modal
+  [tipo]="modalAberto"
+  (fechar)="fecharModal()">
+</app-login-modal>

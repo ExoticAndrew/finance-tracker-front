@@ -1,3 +1,7 @@
+:host {
+  display: contents;
+}
+
 .card-saldo {
   display: flex;
   flex-direction: column;
@@ -6,9 +10,11 @@
   background: linear-gradient(160deg, #00132E, #001738);
   border: 1px solid rgba(59, 130, 246, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 1.5rem;
+  padding: 2rem;
 
   .saldo-label {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255,255,255,0.5);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -33,9 +39,16 @@
     width: fit-content;
     animation: fadeInOut 1.5s ease forwards;
 
-    &.receita { background: rgba(61, 184, 122, 0.15); color: #3db87a; }
-    &.despesa { background: rgba(240, 66, 66, 0.15); color: #f04242; }
+    &.receita { background: rgba(61,184,122,0.15); color: #3db87a; }
+    &.despesa { background: rgba(240,66,66,0.15); color: #f04242; }
   }
 
   .saldo-desc { color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-top: 0.5rem; }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(5px); }
+  20% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }

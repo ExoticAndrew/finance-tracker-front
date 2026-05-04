@@ -27,9 +27,6 @@ section#hero {
     max-width: 700px;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    animation: subirCard 0.6s ease 0.2s forwards;
-    opacity: 0;
-    transform: translateY(20px);
 
     .gradiente {
       background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
@@ -44,18 +41,12 @@ section#hero {
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
     line-height: 1.8;
-    animation: subirCard 0.6s ease 0.3s forwards;
-    opacity: 0;
-    transform: translateY(20px);
   }
 
   .hero-botoes {
     display: flex;
     gap: 1rem;
     align-items: center;
-    animation: subirCard 0.6s ease 0.4s forwards;
-    opacity: 0;
-    transform: translateY(20px);
 
     .btn-primary {
       background: white;

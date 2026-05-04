@@ -1,0 +1,24 @@
+:host { display: contents; }
+
+.card-grafico {
+  background: linear-gradient(160deg, #0B1220, #0E1628);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transition: border-color 0.3s;
+
+  &:hover { border-color: rgba(59, 130, 246, 0.3); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .card-titulo { color: rgba(255,255,255,0.5); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .card-badge { background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.4); color: rgba(255,255,255,0.8); font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 999px; }
+  }
+
+  .chart-wrapper { position: relative; height: 200px; }
+}

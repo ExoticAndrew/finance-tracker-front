@@ -1,0 +1,49 @@
+@if (tipo) {
+  <div class="modal-overlay" (click)="fechar.emit()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>{{ titulo }}</h3>
+        <button class="modal-fechar" (click)="fechar.emit()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        @if (tipo === 'termos') {
+          <h4>1. Aceitação dos Termos</h4>
+          <p>Ao utilizar o Fintrack, você concorda com estes termos de uso.</p>
+
+          <h4>2. Descrição do Serviço</h4>
+          <p>O Fintrack é uma plataforma de controle financeiro pessoal que permite registrar receitas, despesas e visualizar relatórios financeiros.</p>
+
+          <h4>3. Responsabilidades do Usuário</h4>
+          <p>Você é responsável por manter a confidencialidade de sua senha e por todas as atividades realizadas em sua conta.</p>
+
+          <h4>4. Uso Adequado</h4>
+          <p>É proibido usar o Fintrack para atividades ilegais, fraudulentas ou que violem direitos de terceiros.</p>
+
+          <h4>5. Limitação de Responsabilidade</h4>
+          <p>O Fintrack não se responsabiliza por decisões financeiras tomadas com base nos dados apresentados.</p>
+
+          <h4>6. Contato</h4>
+          <p>Dúvidas sobre os termos: contato&#64;fintrack.com.br</p>
+        }
+
+        @if (tipo === 'privacidade') {
+          <h4>1. Dados Coletados</h4>
+          <p>Coletamos nome, email e dados financeiros inseridos por você para fornecer o serviço.</p>
+
+          <h4>2. Uso dos Dados</h4>
+          <p>Seus dados são usados exclusivamente para fornecer e melhorar o serviço. Não vendemos seus dados.</p>
+
+          <h4>3. Segurança</h4>
+          <p>Utilizamos criptografia para proteger suas informações financeiras.</p>
+
+          <h4>4. Seus Direitos</h4>
+          <p>Você pode acessar, corrigir ou excluir seus dados a qualquer momento.</p>
+
+          <h4>5. Contato</h4>
+          <p>Dúvidas sobre privacidade: privacidade&#64;fintrack.com.br</p>
+        }
+      </div>
+    </div>
+  </div>
+}

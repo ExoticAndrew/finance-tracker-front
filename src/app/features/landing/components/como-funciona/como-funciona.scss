@@ -4,6 +4,12 @@ section#como-funciona {
 
   h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
 
+  .subtitulo {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 4rem;
+  }
+
   .passos {
     display: flex;
     align-items: center;
@@ -47,10 +53,11 @@ section#como-funciona {
       transition: border-color 0.3s, transform 0.3s;
       position: relative;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(30px);
 
-      &:hover { border-color: rgba(59, 130, 246, 0.4); transform: translateY(-4px) !important; }
+      &:hover {
+        border-color: rgba(59, 130, 246, 0.4);
+        transform: translateY(-4px);
+      }
 
       .numero-bg {
         position: absolute;
@@ -83,9 +90,5 @@ section#como-funciona {
       h3 { font-size: 1.1rem; font-weight: 600; }
       p { color: #aaa; font-size: 0.9rem; line-height: 1.6; }
     }
-
-    .passo-1 { animation: subirCard 0.6s ease 0.1s forwards; }
-    .passo-2 { animation: subirCard 0.6s ease 0.3s forwards; }
-    .passo-3 { animation: subirCard 0.6s ease 0.5s forwards; }
   }
 }

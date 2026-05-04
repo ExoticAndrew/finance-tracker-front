@@ -1,0 +1,112 @@
+:host {
+  display: contents;
+}
+
+.card-plano {
+  background: linear-gradient(160deg, #0B1220, #0E1628);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.15);
+
+  &:hover {
+    border-color: rgba(59, 130, 246, 0.6);
+    transform: translateY(-4px);
+  }
+
+  .badge-popular {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 1rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .plano-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .plano-nome {
+      color: #60a5fa;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .plano-preco {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+
+      .preco-valor {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .preco-periodo {
+        color: rgba(255,255,255,0.5);
+        font-size: 0.9rem;
+      }
+    }
+
+    .plano-desc {
+      color: #aaa;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  }
+
+  .plano-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+
+      .check {
+        color: #3db87a;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .btn-plano {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+  }
+}
+

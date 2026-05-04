@@ -1,3 +1,7 @@
+:host {
+  display: contents;
+}
+
 .card-animado {
   background: linear-gradient(160deg, #00132E, #001738);
   border: 1px solid rgba(59, 130, 246, 0.2);
@@ -9,7 +13,7 @@
   mask: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgb(0,0,0) 15%, rgb(0,0,0) 85%, rgba(0,0,0,0) 100%);
 
   .card-titulo {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255,255,255,0.5);
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -47,4 +51,9 @@
 
     .valor { min-width: 90px; text-align: right; color: white; font-weight: 600; font-size: 0.85rem; }
   }
+}
+
+@keyframes scroll-up {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }

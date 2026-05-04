@@ -1,4 +1,43 @@
 <section id="contato">
-  <h2>Contato</h2>
-  <p class="subtitulo">Entre em contato com a gente</p>
+  <div class="contato-wrapper" appAnimarAoEntrar>
+
+    <div class="contato-info">
+      <span class="contato-badge">💬 Suporte</span>
+      <h2>Alguma dúvida?<br><span class="gradiente">A gente te ajuda.</span></h2>
+      <p>Nossa equipe está pronta pra responder em até 24 horas. Sem enrolação.</p>
+
+      <div class="contato-links">
+        <a class="contato-item" href="mailto:contato@fintrack.com.br">
+          <div class="icone-wrapper">📧</div>
+          <div>
+            <span class="item-label">Email</span>
+            <span class="item-valor">contato@fintrack.com.br</span>
+          </div>
+        </a>
+        <a class="contato-item" href="#">
+          <div class="icone-wrapper">💬</div>
+          <div>
+            <span class="item-label">WhatsApp</span>
+            <span class="item-valor">(00) 00000-0000</span>
+          </div>
+        </a>
+        <a class="contato-item" href="#">
+          <div class="icone-wrapper">🐦</div>
+          <div>
+            <span class="item-label">Twitter</span>
+            <span class="item-valor">@fintrack</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contato-form-wrapper">
+      <div class="form-header">
+        <p class="form-titulo">Envie uma mensagem</p>
+        <span class="form-badge">✓ Respondemos em até 24h</span>
+      </div>
+      <app-form-contato></app-form-contato>
+    </div>
+
+  </div>
 </section>

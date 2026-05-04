@@ -1,0 +1,88 @@
+<div class="auth-card">
+  <h2>Criar sua conta</h2>
+  <p class="auth-subtitulo">
+    Já tem uma conta?
+    <a (click)="irParaLogin()">Entrar agora</a>
+  </p>
+
+  <form (ngSubmit)="cadastrar()">
+    <div class="form-grupo">
+      <label>Nome completo</label>
+      <div class="input-wrapper">
+        <span class="input-icone">👤</span>
+        <input type="text" [(ngModel)]="nome" name="nome"
+          placeholder="Seu nome completo" required />
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label>Email</label>
+      <div class="input-wrapper">
+        <span class="input-icone">📧</span>
+        <input type="email" [(ngModel)]="email" name="email"
+          placeholder="seu@email.com" required />
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label>Senha</label>
+      <div class="input-wrapper">
+        <span class="input-icone">🔒</span>
+        <input [type]="mostrarSenha ? 'text' : 'password'"
+          [(ngModel)]="senha" name="senha"
+          placeholder="Mínimo 8 caracteres" required />
+        <span class="toggle-senha" (click)="mostrarSenha = !mostrarSenha">
+          {{ mostrarSenha ? '🙈' : '👁️' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-grupo">
+      <label>Confirmar senha</label>
+      <div class="input-wrapper" [class.erro]="erroSenha">
+        <span class="input-icone">🔒</span>
+        <input [type]="mostrarConfirmarSenha ? 'text' : 'password'"
+          [(ngModel)]="confirmarSenha" name="confirmarSenha"
+          placeholder="Repita sua senha" required />
+        <span class="toggle-senha" (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha">
+          {{ mostrarConfirmarSenha ? '🙈' : '👁️' }}
+        </span>
+      </div>
+      @if (erroSenha) {
+        <span class="msg-erro">As senhas não coincidem</span>
+      }
+    </div>
+
+    <button type="submit" class="btn-primario"
+      [class.carregando]="carregando" [disabled]="carregando">
+      @if (carregando) {
+        <span class="spinner"></span>
+        <span>Criando conta...</span>
+      } @else {
+        <span>Criar conta grátis</span>
+      }
+    </button>
+  </form>
+
+  <div class="divisor"><span>ou continue com</span></div>
+
+  <div class="social-buttons">
+    <button class="btn-social btn-google">
+      <img src="https://www.google.com/favicon.ico" alt="Google" width="18" />
+      Continuar com o Google
+    </button>
+
+    <button class="btn-social btn-apple">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+      </svg>
+      Continuar com a Apple
+    </button>
+  </div>
+
+  <p class="auth-footer">
+    Ao criar sua conta, você concorda com nossos
+    <a (click)="abrirTermos.emit()">Termos de Uso</a> e
+    <a (click)="abrirPrivacidade.emit()">Política de Privacidade</a>
+  </p>
+</div>

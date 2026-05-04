@@ -1,0 +1,18 @@
+<form class="form-contato" (ngSubmit)="enviar()">
+  <div class="form-grupo">
+    <label>Nome</label>
+    <input type="text" [(ngModel)]="nome" name="nome" placeholder="Seu nome completo" required />
+  </div>
+
+  <div class="form-grupo">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" name="email" placeholder="seu@email.com" required />
+  </div>
+
+  <div class="form-grupo">
+    <label>Mensagem</label>
+    <textarea [(ngModel)]="mensagem" name="mensagem" placeholder="Como podemos te ajudar?" rows="5" required></textarea>
+  </div>
+
+  <button type="submit" class="btn-enviar">Enviar mensagem</button>
+</form>

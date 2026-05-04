@@ -1,0 +1,21 @@
+<div class="card-plano" appAnimarAoEntrar>
+  <div class="plano-header">
+    <p class="plano-nome">Grátis</p>
+    <div class="plano-preco">
+      <span class="preco-valor">R$ 0</span>
+      <span class="preco-periodo">/mês</span>
+    </div>
+    <p class="plano-desc">Para começar a organizar suas finanças</p>
+  </div>
+
+  <ul class="plano-features">
+    @for (f of funcionalidades; track f) {
+      <li>
+        <span class="check">✓</span>
+        <span>{{ f }}</span>
+      </li>
+    }
+  </ul>
+
+  <button class="btn-plano">Começar grátis</button>
+</div>
