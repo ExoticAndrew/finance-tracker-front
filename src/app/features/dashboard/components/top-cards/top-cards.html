@@ -1,0 +1,41 @@
+<div class="top-cards">
+  <div class="card">
+    <div class="card__left">
+      <div class="card__icon card__icon--green">
+        <i class="ti ti-arrow-down-left"></i>
+      </div>
+      <div class="card__info">
+        <span class="card__label">Total Entrou</span>
+        <span class="card__value green">
+          {{ totalReceitas | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+        </span>
+        <span class="card__compare up">
+          <i class="ti ti-trending-up"></i> 12% vs mês anterior
+        </span>
+      </div>
+    </div>
+    <div class="card__sparkline">
+      <canvas #sparkline width="80" height="40"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__left">
+      <div class="card__icon card__icon--red">
+        <i class="ti ti-arrow-up-right"></i>
+      </div>
+      <div class="card__info">
+        <span class="card__label">Total Saiu</span>
+        <span class="card__value red">
+          {{ totalDespesas | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+        </span>
+        <span class="card__compare down">
+          <i class="ti ti-trending-down"></i> 8% vs mês anterior
+        </span>
+      </div>
+    </div>
+    <div class="card__sparkline">
+      <canvas #sparkline width="80" height="40"></canvas>
+    </div>
+  </div>
+</div>

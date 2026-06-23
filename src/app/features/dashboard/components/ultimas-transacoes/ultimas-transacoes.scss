@@ -1,0 +1,66 @@
+.ultimas-transacoes {
+  background: #111827;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #1f2937;
+
+  &__titulo {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1.25rem 0;
+    color: #fff;
+  }
+
+  &__vazio {
+    color: #6b7280;
+    text-align: center;
+    padding: 2rem 0;
+  }
+}
+
+.transacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid #1f2937;
+
+  &:last-child { border-bottom: none; }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__descricao {
+    font-size: 0.95rem;
+    color: #f9fafb;
+  }
+
+  &__categoria {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+  }
+
+  &__direita {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+  }
+
+  &__valor {
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    &.receita { color: #10b981; }
+    &.despesa { color: #ef4444; }
+  }
+
+  &__data {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+}

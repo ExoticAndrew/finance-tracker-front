@@ -1,0 +1,79 @@
+<div class="medidor-card">
+  <div class="medidor-card__header">
+    <div class="medidor-card__header-left">
+      <div class="medidor-card__icon">
+        <i class="ti ti-chart-pie" aria-hidden="true"></i>
+      </div>
+      <div>
+        <div class="medidor-card__title">Atividade</div>
+        <div class="medidor-card__sub">Distribuição dos gastos</div>
+      </div>
+    </div>
+    <div class="medidor-card__sel">Mês ▾</div>
+  </div>
+
+  @if (totalDespesas() === 0) {
+    <div class="medidor-card__vazio">
+      <i class="ti ti-chart-pie-off" aria-hidden="true"></i>
+      <p>Sem despesas registradas</p>
+    </div>
+  } @else {
+    <div class="medidor-card__donut">
+      <svg width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="Gráfico de distribuição de gastos">
+        <circle cx="60" cy="60" r="45" fill="none" stroke="#1e2a3a" stroke-width="14"/>
+        @for (arco of arcos(); track arco.nome) {
+          <circle
+            cx="60" cy="60" r="45"
+            fill="none"
+            [attr.stroke]="arco.cor"
+            stroke-width="14"
+            stroke-linecap="round"
+            [attr.stroke-dasharray]="arco.dash + ' ' + arco.circunferencia"
+            [attr.stroke-dashoffset]="arco.offset"
+            transform="rotate(-90 60 60)" />
+        }
+      </svg>
+      <div class="medidor-card__donut-center">
+        <span class="medidor-card__donut-label">Total gasto</span>
+        <span class="medidor-card__donut-value">
+          {{ totalDespesas() | currency:"BRL":"symbol":"1.0-0":"pt-BR" }}
+        </span>
+      </div>
+    </div>
+
+    <hr class="medidor-card__divider">
+
+    <div class="medidor-card__lista">
+      @for (cat of categorias(); track cat.nome) {
+        <div class="cat-row">
+          <div class="cat-row__info">
+            <div class="cat-row__dot" [style.background]="cat.cor"></div>
+            <span class="cat-row__nome">{{ cat.nome }}</span>
+            <span class="cat-row__pct">{{ cat.percentual }}%</span>
+            <span class="cat-row__val">
+              {{ cat.total | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+            </span>
+          </div>
+          <div class="cat-row__track">
+            <div class="cat-row__fill" [style.width.%]="cat.percentual" [style.background]="cat.cor"></div>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (dominante()) {
+      <div class="medidor-card__footer">
+        <div class="medidor-card__footer-star">
+          <i class="ti ti-star" aria-hidden="true"></i>
+        </div>
+        <div class="medidor-card__footer-info">
+          <span class="medidor-card__footer-label">Maior categoria do mês</span>
+          <span class="medidor-card__footer-nome">{{ dominante()!.nome }}</span>
+          <span class="medidor-card__footer-pct" [style.color]="dominante()!.cor">
+            Representa {{ dominante()!.percentual }}% dos gastos
+          </span>
+        </div>
+      </div>
+    }
+  }
+</div>

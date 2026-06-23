@@ -1,1 +1,36 @@
-<p>dashboard works!</p>
+<div class="dashboard-layout">
+  <app-sidebar [nomeUsuario]="nomeUsuario" (logoutEvent)="logout()" />
+
+  <main class="dashboard-main">
+    <header class="dashboard-topbar">
+      <div>
+        <h1>Bem-vindo de volta, {{ nomeUsuario }} 👋</h1>
+        <p>Aqui está o resumo das suas finanças hoje.</p>
+      </div>
+      <div class="topbar-search">
+        <i class="ti ti-search"></i>
+        <span>Pesquisar...</span>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+      <div class="col-main">
+        <app-top-cards
+          [totalReceitas]="totalReceitas()"
+          [totalDespesas]="totalDespesas()" />
+
+        <app-grafico-evolucao
+          [totalReceitas]="totalReceitas()"
+          [totalDespesas]="totalDespesas()" />
+
+        <app-tabela-transacoes
+          [transacoes]="transacoes()" />
+      </div>
+
+      <div class="col-right">
+        <app-card-saldo [saldo]="saldo()" [nomeUsuario]="nomeUsuario" />
+        <app-medidor-atividade />
+      </div>
+    </div>
+  </main>
+</div>

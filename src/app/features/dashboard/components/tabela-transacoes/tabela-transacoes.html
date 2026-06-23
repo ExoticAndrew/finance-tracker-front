@@ -1,0 +1,94 @@
+<div class="tabela-card">
+  <div class="tabela-card__header">
+    <span class="tabela-card__title">Transações recentes</span>
+    <div class="tabela-card__actions">
+      <div class="filter">
+        <i class="ti ti-search"></i>
+        <input type="text" placeholder="Buscar transação..."
+          [value]="filtroNome()"
+          (input)="onFiltroNome($any($event.target).value)" />
+      </div>
+      <div class="filter">
+        <i class="ti ti-calendar"></i>
+        <input type="text" placeholder="dd/mm/aaaa"
+          [value]="filtroData()"
+          (input)="onFiltroData($any($event.target).value)" />
+      </div>
+      <button class="tabela-card__ver-todas">Ver todas</button>
+    </div>
+  </div>
+
+  <div class="tabela-card__head">
+    <span>Transação</span>
+    <span>Data</span>
+    <span>Valor</span>
+    <span>Tipo</span>
+    <span>Status</span>
+    <span></span>
+  </div>
+
+  @for (t of transacoesFiltradas(); track t.id) {
+    <div class="tabela-row">
+      <div class="tabela-row__transacao">
+        <div class="tabela-row__icone" [style.background]="corCategoria(t.categoria) + '22'">
+          <i class="ti {{ iconeCategoria(t.categoria) }}" [style.color]="corCategoria(t.categoria)"></i>
+        </div>
+        <div class="tabela-row__info">
+          <span class="tabela-row__desc">{{ t.descricao }}</span>
+          <span class="tabela-row__cat">{{ t.categoria }}</span>
+        </div>
+      </div>
+
+      <div class="tabela-row__data-wrap">
+        <span class="tabela-row__data">{{ t.data | date:"dd/MM/yyyy" }}</span>
+        <span class="tabela-row__hora">{{ getHorario(t.data) }}</span>
+      </div>
+
+      <div class="tabela-row__valor"
+        [class.receita]="t.tipo === 'RECEITA'"
+        [class.despesa]="t.tipo === 'DESPESA'">
+        {{ t.tipo === 'RECEITA' ? '+' : '-' }}{{ t.valor | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+      </div>
+
+      <div>
+        <span class="tabela-row__tipo-badge"
+          [class.rc]="t.tipo === 'RECEITA'"
+          [class.dp]="t.tipo === 'DESPESA'">
+          <i class="ti {{ iconeStatus(t.tipo) }}"></i>
+          {{ t.tipo === 'RECEITA' ? 'Receita' : 'Despesa' }}
+        </span>
+      </div>
+
+      <div>
+        <span class="tabela-row__status-badge"
+          [class.rc]="t.tipo === 'RECEITA'"
+          [class.dp]="t.tipo === 'DESPESA'">
+          {{ t.tipo === 'RECEITA' ? 'Receita' : 'Despesa' }}
+        </span>
+      </div>
+
+      <div class="tabela-row__menu">
+        <button class="tabela-row__menu-btn" (click)="toggleMenu(t.id)">
+          <i class="ti ti-dots-vertical"></i>
+        </button>
+        @if (menuAbertoId() === t.id) {
+          <div class="tabela-row__dropdown">
+            <button class="dropdown-item">
+              <i class="ti ti-pencil"></i> Editar
+            </button>
+            <button class="dropdown-item dropdown-item--danger">
+              <i class="ti ti-trash"></i> Excluir
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (transacoesFiltradas().length === 0) {
+    <div class="tabela-card__vazio">
+      <i class="ti ti-inbox"></i>
+      <p>Nenhuma transação encontrada.</p>
+    </div>
+  }
+</div>

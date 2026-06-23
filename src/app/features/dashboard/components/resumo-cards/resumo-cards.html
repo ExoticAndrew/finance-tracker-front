@@ -1,0 +1,22 @@
+<div class="resumo-cards">
+  <div class="card card--saldo">
+    <span class="card__label">Saldo Atual</span>
+    <span class="card__valor" [class.negativo]="saldo < 0">
+      {{ saldo | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+    </span>
+  </div>
+
+  <div class="card card--receita">
+    <span class="card__label">Total Receitas</span>
+    <span class="card__valor receita">
+      {{ totalReceitas | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+    </span>
+  </div>
+
+  <div class="card card--despesa">
+    <span class="card__label">Total Despesas</span>
+    <span class="card__valor despesa">
+      {{ totalDespesas | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="card-saldo">
+  <div class="card-saldo__header">Meu Saldo</div>
+  <div class="card-saldo__sub">Saldo total disponível</div>
+  <div class="card-saldo__total">
+    {{ saldo | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+  </div>
+
+  <div class="card-visual">
+    <div class="card-visual__label">
+      <span>Saldo atual</span>
+      <div class="card-visual__mc">
+        <div class="mc-circle" style="background:#ef4444"></div>
+        <div class="mc-circle mc-circle--overlap" style="background:#f59e0b"></div>
+      </div>
+    </div>
+    <div class="card-visual__value">
+      {{ saldo | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+    </div>
+    <div class="card-visual__footer">
+     <span class="card-visual__name">{{ nomeUsuario }}</span>
+<span class="card-visual__date">{{ dataAtual }}</span>
+    </div>
+  </div>
+
+  <div class="card-saldo__actions">
+    <button class="btn btn--primary">Ver extrato</button>
+    <button class="btn btn--secondary">Transferir</button>
+  </div>
+</div>

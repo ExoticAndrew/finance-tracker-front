@@ -1,0 +1,20 @@
+<div class="ultimas-transacoes">
+  <h2 class="ultimas-transacoes__titulo">Últimas Transações</h2>
+
+  <div class="ultimas-transacoes__vazio" *ngIf="transacoes.length === 0">
+    Nenhuma transação encontrada.
+  </div>
+
+  <div class="transacao" *ngFor="let t of transacoes">
+    <div class="transacao__info">
+      <span class="transacao__descricao">{{ t.descricao }}</span>
+      <span class="transacao__categoria">{{ t.categoria }}</span>
+    </div>
+    <div class="transacao__direita">
+      <span class="transacao__valor" [class.receita]="t.tipo === 'RECEITA'" [class.despesa]="t.tipo === 'DESPESA'">
+        {{ t.tipo === 'DESPESA' ? '-' : '+' }}{{ t.valor | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}
+      </span>
+      <span class="transacao__data">{{ t.data | date:'dd/MM/yyyy':'':'pt-BR' }}</span>
+    </div>
+  </div>
+</div>

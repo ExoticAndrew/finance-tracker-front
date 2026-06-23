@@ -1,0 +1,104 @@
+:host { display: contents; }
+
+.card-saldo {
+  background: #1e2340;
+  border-radius: 14px;
+  padding: 1.25rem;
+
+  &__header { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 2px; }
+  &__sub    { font-size: 11px; color: #4b5e7a; margin-bottom: 0.875rem; }
+  &__total  { font-size: 26px; font-weight: 800; color: #f1f5f9; margin-bottom: 1rem; letter-spacing: -0.5px; }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 0.875rem;
+  }
+}
+
+.card-visual {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1.586 / 1;
+  border-radius: 12px;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 60%, #6d28d9 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -15px; left: 20px;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  &__label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__mc { display: flex; }
+
+  &__value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__name { font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 500; }
+  &__date { font-size: 10px; color: rgba(255,255,255,0.6); }
+}
+
+.mc-circle {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  opacity: 0.9;
+  &--overlap { margin-left: -8px; }
+}
+
+.btn {
+  border-radius: 9px;
+  padding: 0.6rem;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: "Inter", sans-serif;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.85; }
+  &--primary  { background: #6366f1; color: #fff; }
+  &--secondary { background: transparent; border: 1px solid #252d4a; color: #94a3b8; }
+}

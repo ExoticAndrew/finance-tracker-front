@@ -1,0 +1,37 @@
+.resumo-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: #111827;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #1f2937;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__valor {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+
+    &.negativo { color: #ef4444; }
+    &.receita  { color: #10b981; }
+    &.despesa  { color: #ef4444; }
+  }
+}

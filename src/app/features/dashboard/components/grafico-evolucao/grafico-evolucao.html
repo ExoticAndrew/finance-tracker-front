@@ -1,0 +1,37 @@
+<div class="grafico-card">
+  <div class="grafico-card__header">
+    <span class="grafico-card__title">Evolução financeira</span>
+    <div class="grafico-card__legend">
+      <div class="legend-item">
+        <span class="legend-dot" style="background:#6366f1"></span>Receitas
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot" style="background:#38bdf8"></span>Despesas
+      </div>
+      <div class="year-select">2026 <i class="ti ti-chevron-down"></i></div>
+    </div>
+  </div>
+
+  <div class="grafico-card__resumo">
+    <div class="resumo-item">
+      <span class="resumo-item__label">Receitas</span>
+      <span class="resumo-item__value green">{{ totalReceitas | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}</span>
+    </div>
+    <div class="resumo-item__sep"></div>
+    <div class="resumo-item">
+      <span class="resumo-item__label">Despesas</span>
+      <span class="resumo-item__value red">{{ totalDespesas | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}</span>
+    </div>
+    <div class="resumo-item__sep"></div>
+    <div class="resumo-item">
+      <span class="resumo-item__label">Saldo</span>
+      <span class="resumo-item__value" [class.green]="saldo >= 0" [class.red]="saldo < 0">
+        {{ saldo >= 0 ? '+' : '' }}{{ saldo | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+      </span>
+    </div>
+  </div>
+
+  <div class="grafico-card__chart">
+    <canvas #chartCanvas></canvas>
+  </div>
+</div>

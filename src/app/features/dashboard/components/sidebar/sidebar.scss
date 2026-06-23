@@ -1,0 +1,110 @@
+:host { display: contents; }
+
+.sidebar {
+  width: 215px;
+  background: #111527;
+  border-right: 1px solid #1e2340;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  min-height: 100vh;
+  flex-shrink: 0;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 2rem;
+
+  &__icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i { color: #fff; font-size: 17px; }
+  }
+
+  &__name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #6b7ea8;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+
+  i { font-size: 17px; }
+
+  &.active {
+    background: #6366f1;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  &:not(.active):hover {
+    color: #cbd5e1;
+    background: #1a1f38;
+  }
+}
+
+.nav-divider {
+  border: none;
+  border-top: 1px solid #1e2340;
+  margin: 1rem 0;
+}
+
+.sidebar-footer { margin-top: auto; }
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.5rem;
+
+  &__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    i { color: #fff; font-size: 17px; }
+  }
+
+  &__info { display: flex; flex-direction: column; }
+  &__name { font-size: 13px; color: #f1f5f9; font-weight: 600; }
+  &__role { font-size: 11px; color: #4b5e7a; }
+
+  &__logout {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: #4b5e7a;
+    cursor: pointer;
+    padding: 4px;
+    i { font-size: 16px; }
+    &:hover i { color: #ef4444; }
+  }
+}

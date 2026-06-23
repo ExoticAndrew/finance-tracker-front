@@ -1,0 +1,49 @@
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand__icon">
+      <i class="ti ti-chart-pie"></i>
+    </div>
+    <span class="sidebar-brand__name">Fintrack</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="nav-item active" routerLink="/dashboard">
+      <i class="ti ti-layout-dashboard"></i> Dashboard
+    </a>
+    <a class="nav-item" routerLink="/transacoes">
+      <i class="ti ti-arrows-exchange"></i> Transações
+    </a>
+    <a class="nav-item" routerLink="/dashboard">
+      <i class="ti ti-chart-bar"></i> Relatórios
+    </a>
+    <a class="nav-item" routerLink="/dashboard">
+      <i class="ti ti-wallet"></i> Saldo
+    </a>
+    <a class="nav-item" routerLink="/dashboard">
+      <i class="ti ti-settings"></i> Configurações
+    </a>
+    <hr class="nav-divider">
+    <a class="nav-item" routerLink="/dashboard">
+      <i class="ti ti-shield"></i> Segurança
+    </a>
+    <a class="nav-item" routerLink="/dashboard">
+      <i class="ti ti-help-circle"></i> Suporte
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-user">
+      <div class="sidebar-user__avatar">
+        <i class="ti ti-user"></i>
+      </div>
+      <div class="sidebar-user__info">
+       <span class="sidebar-user__name">{{ nomeUsuario }}</span>
+     
+        <span class="sidebar-user__role">Conta pessoal</span>
+      </div>
+      <button class="sidebar-user__logout" (click)="logoutEvent.emit()" title="Sair">
+        <i class="ti ti-logout"></i>
+      </button>
+    </div>
+  </div>
+</aside>
