@@ -5,6 +5,13 @@
     <a (click)="irParaLogin()">Entrar agora</a>
   </p>
 
+  @if (erro()) {
+    <div class="form-erro">
+      <i class="ti ti-alert-circle"></i>
+      {{ erro() }}
+    </div>
+  }
+
   <form (ngSubmit)="cadastrar()">
     <div class="form-grupo">
       <label>Nome completo</label>
@@ -48,14 +55,11 @@
           {{ mostrarConfirmarSenha ? '🙈' : '👁️' }}
         </span>
       </div>
-      @if (erroSenha) {
-        <span class="msg-erro">As senhas não coincidem</span>
-      }
     </div>
 
     <button type="submit" class="btn-primario"
-      [class.carregando]="carregando" [disabled]="carregando">
-      @if (carregando) {
+      [class.carregando]="carregando()" [disabled]="carregando()">
+      @if (carregando()) {
         <span class="spinner"></span>
         <span>Criando conta...</span>
       } @else {

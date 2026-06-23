@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Output, EventEmitter, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -17,16 +17,30 @@ export class LoginForm {
   email = '';
   senha = '';
   mostrarSenha = false;
-  carregando = false;
+  carregando = signal(false);
+  erro = signal('');
 
   private router = inject(Router);
   private authService = inject(AuthService);
 
   async entrar() {
-    this.carregando = true;
+    if (!this.email || !this.senha) {
+      this.erro.set('Preencha o email e a senha.');
+      return;
+    }
+
+    this.erro.set('');
+    this.carregando.set(true);
+
     const sucesso = await this.authService.login(this.email, this.senha);
-    this.carregando = false;
-    if (sucesso) this.router.navigate(['/dashboard']);
+
+    this.carregando.set(false);
+
+    if (sucesso) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.erro.set('Email ou senha inválidos. Tente novamente.');
+    }
   }
 
   irParaCadastro() { this.router.navigate(['/cadastro']); }

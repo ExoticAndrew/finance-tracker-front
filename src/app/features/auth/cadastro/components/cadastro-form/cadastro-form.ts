@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Output, EventEmitter, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -20,22 +20,43 @@ export class CadastroForm {
   confirmarSenha = '';
   mostrarSenha = false;
   mostrarConfirmarSenha = false;
-  carregando = false;
+  carregando = signal(false);
   erroSenha = false;
+  erro = signal('');
 
   private router = inject(Router);
   private authService = inject(AuthService);
 
   async cadastrar() {
-    if (this.senha !== this.confirmarSenha) {
-      this.erroSenha = true;
+    if (!this.nome || !this.email || !this.senha) {
+      this.erro.set('Preencha todos os campos.');
       return;
     }
+
+    if (this.senha !== this.confirmarSenha) {
+      this.erroSenha = true;
+      this.erro.set('As senhas não coincidem.');
+      return;
+    }
+
+    if (this.senha.length < 8) {
+      this.erro.set('A senha deve ter no mínimo 8 caracteres.');
+      return;
+    }
+
     this.erroSenha = false;
-    this.carregando = true;
+    this.erro.set('');
+    this.carregando.set(true);
+
     const sucesso = await this.authService.cadastrar(this.nome, this.email, this.senha);
-    this.carregando = false;
-    if (sucesso) this.router.navigate(['/dashboard']);
+
+    this.carregando.set(false);
+
+    if (sucesso) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.erro.set('Não foi possível criar a conta. Tente novamente.');
+    }
   }
 
   irParaLogin() { this.router.navigate(['/login']); }
