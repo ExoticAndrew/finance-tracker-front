@@ -1,1 +1,34 @@
-<p>transacoes works!</p>
+<div class="transacoes-layout">
+  <app-sidebar (logoutEvent)="logout()" />
+
+  <main class="transacoes-main">
+    <header class="transacoes-topbar">
+      <div>
+        <h1>Transações</h1>
+        <p>Gerencie suas receitas e despesas</p>
+      </div>
+      <button class="btn-nova" (click)="abrirModalNovo()">
+        <i class="ti ti-plus"></i>
+        Nova transação
+      </button>
+    </header>
+
+    <div class="transacoes-content">
+      <app-lista-transacoes
+        [transacoes]="transacoes()"
+        [totalPages]="totalPages()"
+        [paginaAtual]="paginaAtual()"
+        [carregando]="carregando()"
+        (editar)="abrirModalEditar($event)"
+        (deletar)="onDeletado()"
+        (mudarPagina)="carregar($event)" />
+    </div>
+  </main>
+
+  @if (modalAberto()) {
+    <app-modal-transacao
+      [transacao]="transacaoEditando()"
+      (fechar)="fecharModal()"
+      (salvo)="onSalvo()" />
+  }
+</div>

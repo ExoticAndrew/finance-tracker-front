@@ -1,0 +1,87 @@
+<div class="lista">
+  @if (carregando) {
+    <div class="lista__loading">Carregando...</div>
+  } @else {
+    <div class="lista__card">
+      <div class="lista__head">
+        <span>Nome</span>
+        <span>Data</span>
+        <span>Valor</span>
+        <span>Categoria</span>
+        <span>Tipo</span>
+        <span>Ações</span>
+      </div>
+
+      @if (transacoes.length === 0) {
+        <div class="lista__vazio">
+          <i class="ti ti-inbox"></i>
+          <p>Nenhuma transação encontrada.</p>
+          <span>Clique em "Nova transação" para começar.</span>
+        </div>
+      }
+
+      @for (t of transacoes; track t.id) {
+        <div class="lista__row">
+          <div class="lista__nome">
+            <div class="lista__icone" [style.background]="corCategoria(t.categoria) + '22'">
+              <i class="ti {{ iconeCategoria(t.categoria) }}" [style.color]="corCategoria(t.categoria)"></i>
+            </div>
+            <div>
+              <div class="lista__desc">{{ t.descricao }}</div>
+              <div class="lista__obs">{{ t.observacoes || '—' }}</div>
+            </div>
+          </div>
+          <div class="lista__data">{{ t.data | date:"dd/MM/yyyy" }}</div>
+          <div class="lista__valor" [class.receita]="t.tipo === 'RECEITA'" [class.despesa]="t.tipo === 'DESPESA'">
+            {{ t.tipo === 'RECEITA' ? '+' : '-' }}{{ t.valor | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+          </div>
+          <div>
+            <span class="lista__cat-badge" [style.background]="corCategoria(t.categoria) + '22'" [style.color]="corCategoria(t.categoria)">
+              {{ t.categoria }}
+            </span>
+          </div>
+          <div>
+            <span class="lista__tipo-badge" [class.rc]="t.tipo === 'RECEITA'" [class.dp]="t.tipo === 'DESPESA'">
+              {{ t.tipo === 'RECEITA' ? 'Receita' : 'Despesa' }}
+            </span>
+          </div>
+          <div class="lista__acoes">
+            <button class="lista__btn-edit" (click)="onEditar(t)" title="Editar">
+              <i class="ti ti-pencil"></i>
+            </button>
+            <button class="lista__btn-del" (click)="onDeletar(t.id)" title="Deletar">
+              <i class="ti ti-trash"></i>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (totalPages > 1) {
+      <div class="lista__paginacao">
+        <button
+          class="lista__pag-btn"
+          [disabled]="paginaAtual === 0"
+          (click)="mudarPagina.emit(paginaAtual - 1)">
+          <i class="ti ti-chevron-left"></i>
+        </button>
+
+        @for (p of paginas(); track p) {
+          <button
+            class="lista__pag-btn"
+            [class.ativo]="p === paginaAtual"
+            (click)="mudarPagina.emit(p)">
+            {{ p + 1 }}
+          </button>
+        }
+
+        <button
+          class="lista__pag-btn"
+          [disabled]="paginaAtual === totalPages - 1"
+          (click)="mudarPagina.emit(paginaAtual + 1)">
+          <i class="ti ti-chevron-right"></i>
+        </button>
+      </div>
+    }
+  }
+</div>

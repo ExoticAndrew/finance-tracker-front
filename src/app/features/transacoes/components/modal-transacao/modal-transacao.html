@@ -1,0 +1,104 @@
+<div class="modal-overlay" (click)="fecharModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal__header">
+      <h2 class="modal__titulo">
+        {{ isEdicao ? 'Editar transação' : 'Nova transação' }}
+      </h2>
+      <button class="modal__fechar" (click)="fecharModal()">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+
+    <div class="modal__body">
+      @if (erro()) {
+        <div class="modal__erro">
+          <i class="ti ti-alert-circle"></i>
+          {{ erro() }}
+        </div>
+      }
+
+      <div class="modal__grid">
+        <div class="campo campo--full">
+          <label class="campo__label">Descrição *</label>
+          <input
+            class="campo__input"
+            type="text"
+            placeholder="Ex: Salário, Aluguel..."
+            [(ngModel)]="descricao"
+            maxlength="100" />
+        </div>
+
+        <div class="campo">
+          <label class="campo__label">Valor *</label>
+          <input
+            class="campo__input"
+            type="number"
+            placeholder="0,00"
+            [(ngModel)]="valor"
+            min="0.01"
+            step="0.01" />
+        </div>
+
+        <div class="campo">
+          <label class="campo__label">Data *</label>
+          <input
+            class="campo__input"
+            type="date"
+            [(ngModel)]="data" />
+        </div>
+
+        <div class="campo">
+          <label class="campo__label">Tipo *</label>
+          <div class="tipo-toggle">
+            <button
+              class="tipo-btn"
+              [class.ativo-receita]="tipo === 'RECEITA'"
+              (click)="tipo = 'RECEITA'">
+              <i class="ti ti-trending-up"></i> Receita
+            </button>
+            <button
+              class="tipo-btn"
+              [class.ativo-despesa]="tipo === 'DESPESA'"
+              (click)="tipo = 'DESPESA'">
+              <i class="ti ti-trending-down"></i> Despesa
+            </button>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label class="campo__label">Categoria *</label>
+          <select class="campo__input campo__select" [(ngModel)]="categoria">
+            <option value="" disabled>Selecione...</option>
+            @for (cat of categorias; track cat) {
+              <option [value]="cat">{{ cat }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="campo campo--full">
+          <label class="campo__label">Observações</label>
+          <textarea
+            class="campo__input campo__textarea"
+            placeholder="Opcional..."
+            [(ngModel)]="observacoes"
+            maxlength="500"
+            rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal__footer">
+      <button class="btn btn--secondary" (click)="fecharModal()">
+        Cancelar
+      </button>
+      <button class="btn btn--primary" (click)="salvar()" [disabled]="carregando()">
+        @if (carregando()) {
+          <i class="ti ti-loader-2"></i> Salvando...
+        } @else {
+          <i class="ti ti-check"></i>
+          {{ isEdicao ? 'Salvar alterações' : 'Criar transação' }}
+        }
+      </button>
+    </div>
+  </div>
+</div>
