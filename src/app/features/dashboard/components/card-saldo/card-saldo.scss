@@ -1,13 +1,14 @@
 :host { display: contents; }
 
 .card-saldo {
-  background: #1e2340;
+  background: var(--cor-superficie);
   border-radius: 14px;
   padding: 1.25rem;
+  transition: background 0.3s ease;
 
-  &__header { font-size: 15px; font-weight: 700; color: #f1f5f9; margin-bottom: 2px; }
-  &__sub    { font-size: 11px; color: #4b5e7a; margin-bottom: 0.875rem; }
-  &__total  { font-size: 26px; font-weight: 800; color: #f1f5f9; margin-bottom: 1rem; letter-spacing: -0.5px; }
+  &__header { font-size: 15px; font-weight: 700; color: var(--cor-texto); margin-bottom: 2px; }
+  &__sub    { font-size: 11px; color: var(--cor-texto-suave); margin-bottom: 0.875rem; }
+  &__total  { font-size: 26px; font-weight: 800; color: var(--cor-texto); margin-bottom: 1rem; letter-spacing: -0.5px; }
 
   &__actions {
     display: grid;
@@ -99,6 +100,6 @@
   font-family: "Inter", sans-serif;
   transition: opacity 0.2s;
   &:hover { opacity: 0.85; }
-  &--primary  { background: #6366f1; color: #fff; }
-  &--secondary { background: transparent; border: 1px solid #252d4a; color: #94a3b8; }
+  &--primary  { background: var(--cor-primaria); color: #fff; }
+  &--secondary { background: transparent; border: 1px solid var(--cor-borda); color: var(--cor-texto-suave); }
 }
