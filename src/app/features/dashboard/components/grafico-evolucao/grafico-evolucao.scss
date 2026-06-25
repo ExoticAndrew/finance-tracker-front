@@ -1,10 +1,11 @@
 :host { display: contents; }
 
 .grafico-card {
-  background: #111827;
-  border: 0.5px solid #1f2a40;
+  background: var(--cor-superficie);
+  border: 0.5px solid var(--cor-borda);
   border-radius: 14px;
   padding: 1.1rem 1.25rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
 
   &__header {
     display: flex;
@@ -13,7 +14,7 @@
     margin-bottom: 1rem;
   }
 
-  &__title { font-size: 15px; font-weight: 700; color: #f1f5f9; }
+  &__title { font-size: 15px; font-weight: 700; color: var(--cor-texto); }
 
   &__legend {
     display: flex;
@@ -22,15 +23,15 @@
   }
 
   &__resumo {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: #0f172a;
-  border: 0.5px solid #1e2a3a;
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-}
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--cor-fundo);
+    border: 0.5px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+  }
 
   &__chart { height: 150px; }
 }
@@ -43,7 +44,7 @@
 
   &__label {
     font-size: 10px;
-    color: #4b5e7a;
+    color: var(--cor-texto-suave);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -51,7 +52,7 @@
   &__value {
     font-size: 13px;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--cor-texto);
     white-space: nowrap;
 
     &.green { color: #10b981; }
@@ -61,7 +62,7 @@
   &__sep {
     width: 0.5px;
     height: 30px;
-    background: #252d4a;
+    background: var(--cor-borda);
     flex-shrink: 0;
   }
 }
@@ -71,7 +72,7 @@
   align-items: center;
   gap: 5px;
   font-size: 11.5px;
-  color: #6b7ea8;
+  color: var(--cor-texto-suave);
 }
 
 .legend-dot {
@@ -82,12 +83,12 @@
 }
 
 .year-select {
-  background: #252d4a;
-  border: 1px solid #2d3a5a;
+  background: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
   border-radius: 7px;
   padding: 3px 10px;
   font-size: 11px;
-  color: #94a3b8;
+  color: var(--cor-texto-suave);
   display: flex;
   align-items: center;
   gap: 4px;
