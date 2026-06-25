@@ -13,11 +13,7 @@
           type="button"
           class="btn-tema"
           (click)="temaService.alternar()"
-          aria-label="Alternar tema claro/escuro">git add src/app/core/services/tema.ts
-git commit -m "fix(tema): implementa logica do TemaService"
-
-git add src/app/features/dashboard/dashboard.ts src/app/features/dashboard/dashboard.html src/app/features/dashboard/dashboard.scss
-git commit -m "feat(dashboard): adiciona botao de alternar tema"
+          aria-label="Alternar tema claro/escuro">
           <i
             class="ti"
             [class.ti-sun]="temaService.tema() === 'escuro'"
