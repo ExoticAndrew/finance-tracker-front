@@ -1,10 +1,11 @@
 :host { display: contents; }
 
 .medidor-card {
-  background: #111827;
-  border: 0.5px solid #1f2a40;
+  background: var(--cor-superficie);
+  border: 0.5px solid var(--cor-borda);
   border-radius: 16px;
   padding: 1.1rem 1.1rem 0.875rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
 
   &__header {
     display: flex;
@@ -30,14 +31,14 @@
     i { color: #818cf8; font-size: 14px; }
   }
 
-  &__title { font-size: 13px; font-weight: 600; color: #f1f5f9; }
-  &__sub   { font-size: 10px; color: #475569; }
+  &__title { font-size: 13px; font-weight: 600; color: var(--cor-texto); }
+  &__sub   { font-size: 10px; color: var(--cor-texto-suave); }
 
   &__sel {
     font-size: 10px;
-    color: #64748b;
-    background: #1e2a3a;
-    border: 0.5px solid #2d3f55;
+    color: var(--cor-texto-suave);
+    background: var(--cor-superficie-2);
+    border: 0.5px solid var(--cor-borda);
     border-radius: 6px;
     padding: 2px 8px;
     cursor: pointer;
@@ -62,21 +63,21 @@
   &__donut-label {
     display: block;
     font-size: 9px;
-    color: #475569;
+    color: var(--cor-texto-suave);
   }
 
   &__donut-value {
     display: block;
     font-size: 14px;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--cor-texto);
     line-height: 1.2;
     white-space: nowrap;
   }
 
   &__divider {
     border: none;
-    border-top: 0.5px solid #1e2a3a;
+    border-top: 0.5px solid var(--cor-borda);
     margin: 0.75rem 0;
   }
 
@@ -88,7 +89,7 @@
   }
 
   &__footer {
-    background: #0f172a;
+    background: var(--cor-fundo);
     border-radius: 10px;
     padding: 0.6rem 0.75rem;
     display: flex;
@@ -114,8 +115,8 @@
     gap: 1px;
   }
 
-  &__footer-label { font-size: 9px;  color: #475569; }
-  &__footer-nome  { font-size: 11px; font-weight: 600; color: #f1f5f9; }
+  &__footer-label { font-size: 9px;  color: var(--cor-texto-suave); }
+  &__footer-nome  { font-size: 11px; font-weight: 600; color: var(--cor-texto); }
   &__footer-pct   { font-size: 9px; }
 
   &__vazio {
@@ -124,7 +125,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 2rem 0;
-    color: #2d3a52;
+    color: var(--cor-texto-suave);
     i { font-size: 32px; }
     p { font-size: 12px; }
   }
@@ -150,24 +151,24 @@
 
   &__nome {
     font-size: 11px;
-    color: #94a3b8;
+    color: var(--cor-texto-suave);
     flex: 1;
   }
 
   &__pct {
     font-size: 11px;
     font-weight: 600;
-    color: #f1f5f9;
+    color: var(--cor-texto);
   }
 
   &__val {
     font-size: 9px;
-    color: #475569;
+    color: var(--cor-texto-suave);
   }
 
   &__track {
     height: 3px;
-    background: #1e2a3a;
+    background: var(--cor-superficie-2);
     border-radius: 2px;
     overflow: hidden;
   }
