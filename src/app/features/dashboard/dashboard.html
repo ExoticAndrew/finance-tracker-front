@@ -4,12 +4,30 @@
   <main class="dashboard-main">
     <header class="dashboard-topbar">
       <div>
-        <h1>Bem-vindo de volta, {{ nomeUsuario }} 👋</h1>
+        <h1>Olá, {{ nomeUsuario }} </h1>
         <p>Aqui está o resumo das suas finanças hoje.</p>
       </div>
-      <div class="topbar-search">
-        <i class="ti ti-search"></i>
-        <span>Pesquisar...</span>
+
+      <div class="topbar-acoes">
+        <button
+          type="button"
+          class="btn-tema"
+          (click)="temaService.alternar()"
+          aria-label="Alternar tema claro/escuro">git add src/app/core/services/tema.ts
+git commit -m "fix(tema): implementa logica do TemaService"
+
+git add src/app/features/dashboard/dashboard.ts src/app/features/dashboard/dashboard.html src/app/features/dashboard/dashboard.scss
+git commit -m "feat(dashboard): adiciona botao de alternar tema"
+          <i
+            class="ti"
+            [class.ti-sun]="temaService.tema() === 'escuro'"
+            [class.ti-moon]="temaService.tema() === 'claro'"></i>
+        </button>
+
+        <div class="topbar-search">
+          <i class="ti ti-search"></i>
+          <span>Pesquisar...</span>
+        </div>
       </div>
     </header>
 

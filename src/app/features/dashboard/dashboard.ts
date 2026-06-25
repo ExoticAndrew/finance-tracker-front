@@ -2,6 +2,7 @@ import { Component, inject, OnInit, OnDestroy, signal } from '@angular/core';
 import { TransacaoService, Transacao } from '../../core/services/transacao';
 import { AuthService } from '../../core/services/auth';
 import { EventosService } from '../../core/services/eventos';
+import { TemaService } from '../../core/services/tema';
 import { Sidebar } from './components/sidebar/sidebar';
 import { TopCards } from './components/top-cards/top-cards';
 import { GraficoEvolucao } from './components/grafico-evolucao/grafico-evolucao';
@@ -20,6 +21,9 @@ export class Dashboard implements OnInit, OnDestroy {
   private transacaoService = inject(TransacaoService);
   private authService = inject(AuthService);
   private eventosService = inject(EventosService);
+  
+  
+  temaService = inject(TemaService);
   private sub!: Subscription;
 
   nomeUsuario = this.authService.getNome();
