@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { AnimarAoEntrar } from '../../../../shared/directives/animar-ao-entrar';
 
 @Component({
   selector: 'app-hero',
-  imports: [AnimarAoEntrar],
+  imports: [AnimarAoEntrar, RouterLink],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
