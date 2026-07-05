@@ -34,19 +34,13 @@ export class AuthService {
     }
   }
 
-  async cadastrar(nome: string, email: string, senha: string): Promise<boolean> {
-    try {
-      const res = await firstValueFrom(
-        this.http.post<LoginResponse>(`${this.API_URL}/cadastro`, { nome, email, senha })
-      );
-      localStorage.setItem(this.TOKEN_KEY, res.token);
-      localStorage.setItem(this.NOME_KEY, res.nome);
-      return true;
-    } catch {
-      return false;
-    }
+ async cadastrar(nome: string, email: string, senha: string): Promise<void> {
+    const res = await firstValueFrom(
+      this.http.post<LoginResponse>(`${this.API_URL}/cadastro`, { nome, email, senha })
+    );
+    localStorage.setItem(this.TOKEN_KEY, res.token);
+    localStorage.setItem(this.NOME_KEY, res.nome);
   }
-
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.NOME_KEY);

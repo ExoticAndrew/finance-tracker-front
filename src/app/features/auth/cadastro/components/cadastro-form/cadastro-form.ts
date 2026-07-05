@@ -39,23 +39,17 @@ export class CadastroForm {
       return;
     }
 
-    if (this.senha.length < 8) {
-      this.erro.set('A senha deve ter no mínimo 8 caracteres.');
-      return;
-    }
-
     this.erroSenha = false;
     this.erro.set('');
     this.carregando.set(true);
 
-    const sucesso = await this.authService.cadastrar(this.nome, this.email, this.senha);
-
-    this.carregando.set(false);
-
-    if (sucesso) {
+    try {
+      await this.authService.cadastrar(this.nome, this.email, this.senha);
       this.router.navigate(['/dashboard']);
-    } else {
-      this.erro.set('Não foi possível criar a conta. Tente novamente.');
+    } catch (err: any) {
+      this.erro.set(err?.error?.mensagem ?? 'Não foi possível criar a conta. Tente novamente.');
+    } finally {
+      this.carregando.set(false);
     }
   }
 
