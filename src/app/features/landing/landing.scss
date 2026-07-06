@@ -18,3 +18,14 @@ section#funcionalidades {
     margin: 0 auto;
   }
 }
+@media (max-width: 768px) {
+  section#funcionalidades {
+    padding: 4rem 1.5rem;
+
+    h2 { font-size: 1.8rem; }
+
+    .grid-funcionalidades {
+      grid-template-columns: 1fr;
+    }
+  }
+}

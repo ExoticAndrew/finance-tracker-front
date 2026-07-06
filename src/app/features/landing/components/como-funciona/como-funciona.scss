@@ -92,3 +92,19 @@ section#como-funciona {
     }
   }
 }
+@media (max-width: 768px) {
+  section#como-funciona {
+    padding: 4rem 1.5rem;
+
+    h2 { font-size: 1.8rem; }
+
+    .passos {
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .linha-conectora {
+        display: none;
+      }
+    }
+  }
+}

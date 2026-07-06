@@ -12,3 +12,14 @@ section#planos {
     margin: 0 auto;
   }
 }
+@media (max-width: 768px) {
+  section#planos {
+    padding: 4rem 1.5rem;
+
+    h2 { font-size: 1.8rem; }
+
+    .grid-planos {
+      grid-template-columns: 1fr;
+    }
+  }
+}
