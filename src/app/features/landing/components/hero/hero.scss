@@ -77,3 +77,26 @@ section#hero {
     }
   }
 }
+@media (max-width: 768px) {
+  section#hero {
+    padding: 6rem 1.5rem 3rem;
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .hero-botoes {
+      flex-direction: column;
+      width: 100%;
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+    }
+  }
+}

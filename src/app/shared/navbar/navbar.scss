@@ -105,3 +105,23 @@ nav {
     }
   }
 }
+@media (max-width: 768px) {
+  nav {
+    width: 92%;
+    padding: 0.7rem 1.2rem;
+
+    ul {
+      display: none;
+    }
+
+    .actions {
+      gap: 0.4rem;
+
+      .btn-entrar,
+      .btn-comecar {
+        padding: 0.45rem 0.9rem;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
