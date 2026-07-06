@@ -1,3 +1,4 @@
+@use '../../../../styles/breakpoints' as *;
 section#contato {
   padding: 6rem 2rem;
 
@@ -137,7 +138,7 @@ section#contato {
     }
   }
 }
-@media (max-width: 768px) {
+@include mobile {
   section#contato {
     padding: 4rem 1.5rem;
 

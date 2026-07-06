@@ -1,3 +1,4 @@
+@use '../../../../styles/breakpoints' as *;
 section#planos {
   padding: 6rem 2rem;
   text-align: center;
@@ -12,7 +13,7 @@ section#planos {
     margin: 0 auto;
   }
 }
-@media (max-width: 768px) {
+@include mobile {
   section#planos {
     padding: 4rem 1.5rem;
 

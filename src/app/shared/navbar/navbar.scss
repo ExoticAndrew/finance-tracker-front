@@ -1,3 +1,4 @@
+@use '../../styles/breakpoints' as *;
 nav {
   position: fixed;
   top: 1.2rem;
@@ -105,7 +106,7 @@ nav {
     }
   }
 }
-@media (max-width: 768px) {
+@include mobile  {
   nav {
     width: 92%;
     padding: 0.7rem 1.2rem;

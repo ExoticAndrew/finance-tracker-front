@@ -1,3 +1,5 @@
+@use '../../../../styles/breakpoints' as *;
+
 section#como-funciona {
   padding: 6rem 2rem;
   text-align: center;
@@ -92,7 +94,7 @@ section#como-funciona {
     }
   }
 }
-@media (max-width: 768px) {
+@include mobile  {
   section#como-funciona {
     padding: 4rem 1.5rem;
 

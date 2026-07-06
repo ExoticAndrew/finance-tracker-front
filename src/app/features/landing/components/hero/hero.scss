@@ -1,3 +1,4 @@
+@use '../../../../styles/breakpoints' as *;
 section#hero {
   min-height: 100vh;
   display: flex;
@@ -77,7 +78,7 @@ section#hero {
     }
   }
 }
-@media (max-width: 768px) {
+@include mobile {
   section#hero {
     padding: 6rem 1.5rem 3rem;
 

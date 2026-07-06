@@ -1,3 +1,4 @@
+@use '../../styles/breakpoints' as *;
 section#funcionalidades {
   padding: 6rem 2rem;
   text-align: center;
@@ -18,7 +19,7 @@ section#funcionalidades {
     margin: 0 auto;
   }
 }
-@media (max-width: 768px) {
+@include mobile {
   section#funcionalidades {
     padding: 4rem 1.5rem;
 
