@@ -137,3 +137,21 @@ section#contato {
     }
   }
 }
+@media (max-width: 768px) {
+  section#contato {
+    padding: 4rem 1.5rem;
+
+    .contato-wrapper {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contato-info h2 {
+      font-size: 1.8rem;
+    }
+
+    .contato-form-wrapper {
+      padding: 1.5rem;
+    }
+  }
+}
