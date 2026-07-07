@@ -20,6 +20,13 @@ export interface PaginaTransacoes {
   number: number;
 }
 
+export interface ComparativoMensal {
+  receitaAtual: number;
+  receitaAnterior: number;
+  despesaAtual: number;
+  despesaAnterior: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class TransacaoService {
   private readonly API_URL = `${environment.apiUrl}/api/transacoes`;
@@ -55,5 +62,9 @@ export class TransacaoService {
 
   getResumoMensal(ano: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_URL}/resumo/mensal?ano=${ano}`);
+  }
+
+  getComparativoMensal(): Observable<ComparativoMensal> {
+    return this.http.get<ComparativoMensal>(`${this.API_URL}/comparativo-mensal`);
   }
 }
