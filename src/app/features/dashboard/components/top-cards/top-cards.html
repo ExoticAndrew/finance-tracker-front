@@ -5,12 +5,16 @@
         <i class="ti ti-arrow-down-left"></i>
       </div>
       <div class="card__info">
-        <span class="card__label">Total Entrou</span>
+        <span class="card__label">Total Entrou (mês)</span>
         <span class="card__value green">
-          {{ totalReceitas | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+          {{ totalReceitasMes | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
         </span>
-        <span class="card__compare up">
-          <i class="ti ti-trending-up"></i> 12% vs mês anterior
+        <span class="card__compare" [class]="corReceita">
+          <ng-container *ngIf="variacaoReceita !== null; else semDadoReceita">
+            <i class="ti" [class.ti-trending-up]="corReceita === 'up'" [class.ti-trending-down]="corReceita === 'down'"></i>
+            {{ variacaoReceita | number:'1.0-1' }}% vs mês anterior
+          </ng-container>
+          <ng-template #semDadoReceita>Sem dados do mês anterior</ng-template>
         </span>
       </div>
     </div>
@@ -25,12 +29,16 @@
         <i class="ti ti-arrow-up-right"></i>
       </div>
       <div class="card__info">
-        <span class="card__label">Total Saiu</span>
+        <span class="card__label">Total Saiu (mês)</span>
         <span class="card__value red">
-          {{ totalDespesas | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
+          {{ totalDespesasMes | currency:"BRL":"symbol":"1.2-2":"pt-BR" }}
         </span>
-        <span class="card__compare down">
-          <i class="ti ti-trending-down"></i> 8% vs mês anterior
+        <span class="card__compare" [class]="corDespesa">
+          <ng-container *ngIf="variacaoDespesa !== null; else semDadoDespesa">
+            <i class="ti" [class.ti-trending-up]="corDespesa === 'up'" [class.ti-trending-down]="corDespesa === 'down'"></i>
+            {{ variacaoDespesa | number:'1.0-1' }}% vs mês anterior
+          </ng-container>
+          <ng-template #semDadoDespesa>Sem dados do mês anterior</ng-template>
         </span>
       </div>
     </div>

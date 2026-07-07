@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, Input, OnChanges, ElementRef, ViewChildren, QueryList, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
+import { TransacaoService } from '../../../../core/services/transacao';
 Chart.register(...registerables);
 
 @Component({
@@ -16,23 +17,47 @@ export class TopCards implements OnChanges {
   @ViewChildren('sparkline') sparklineRefs!: QueryList<ElementRef<HTMLCanvasElement>>;
 
   private charts: Chart[] = [];
+  private transacaoService = inject(TransacaoService);
+
+  totalReceitasMes = 0;
+  totalDespesasMes = 0;
+  variacaoReceita: number | null = 0;
+  variacaoDespesa: number | null = 0;
 
   ngOnChanges(): void {
+    this.transacaoService.getComparativoMensal().subscribe(dados => {
+      this.totalReceitasMes = dados.receitaAtual;
+      this.totalDespesasMes = dados.despesaAtual;
+      this.variacaoReceita = this.calcularVariacao(dados.receitaAtual, dados.receitaAnterior);
+      this.variacaoDespesa = this.calcularVariacao(dados.despesaAtual, dados.despesaAnterior);
+    });
     setTimeout(() => this.renderSparklines(), 50);
+  }
+
+  get corReceita(): 'up' | 'down' | 'neutro' {
+    if (this.variacaoReceita === null) return 'neutro';
+    return this.variacaoReceita >= 0 ? 'up' : 'down';
+  }
+
+  get corDespesa(): 'up' | 'down' | 'neutro' {
+    if (this.variacaoDespesa === null) return 'neutro';
+    return this.variacaoDespesa >= 0 ? 'up' : 'down';
+  }
+
+  private calcularVariacao(atual: number, anterior: number): number | null {
+    if (anterior === 0) return null;
+    return ((atual - anterior) / anterior) * 100;
   }
 
   private renderSparklines(): void {
     this.charts.forEach(c => c.destroy());
     this.charts = [];
-
     const canvases = this.sparklineRefs?.toArray();
     if (!canvases?.length) return;
-
     const configs = [
       { data: [30, 45, 35, 60, 55, 70, 65, 80, 75, 90, 85, this.totalReceitas > 0 ? 100 : 0], color: '#10b981' },
       { data: [20, 35, 25, 40, 38, 50, 45, 55, 48, 60, 55, this.totalDespesas > 0 ? 70 : 0], color: '#ef4444' }
     ];
-
     canvases.forEach((ref, i) => {
       const chart = new Chart(ref.nativeElement, {
         type: 'line',
