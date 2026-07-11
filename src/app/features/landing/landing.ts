@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Navbar } from '../../shared/navbar/navbar';
 import { Hero } from './components/hero/hero';
 import { ComoFunciona } from './components/como-funciona/como-funciona';
@@ -9,6 +9,7 @@ import { CardSaldo } from './components/card-saldo/card-saldo';
 import { Planos } from './components/planos/planos';
 import { Contato } from './components/contato/contato';
 import { Relatorios } from './components/relatorios/relatorios';
+
 @Component({
   selector: 'app-landing',
   imports: [
@@ -20,10 +21,21 @@ import { Relatorios } from './components/relatorios/relatorios';
     CardTransacoes,
     CardSaldo,
     Planos,
-    Contato ,
-     Relatorios
+    Contato,
+    Relatorios
   ],
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
-export class Landing {}
+export class Landing implements OnInit, OnDestroy {
+  private temaAnterior: string = 'escuro';
+
+  ngOnInit(): void {
+    this.temaAnterior = document.documentElement.getAttribute('data-tema') ?? 'escuro';
+    document.documentElement.setAttribute('data-tema', 'escuro');
+  }
+
+  ngOnDestroy(): void {
+    document.documentElement.setAttribute('data-tema', this.temaAnterior);
+  }
+}
