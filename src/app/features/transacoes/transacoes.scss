@@ -5,6 +5,7 @@
   font-family: "Inter", sans-serif;
   color: var(--cor-texto);
   transition: background 0.3s ease, color 0.3s ease;
+  animation: fade-in 0.25s ease;
 }
 
 .transacoes-main {

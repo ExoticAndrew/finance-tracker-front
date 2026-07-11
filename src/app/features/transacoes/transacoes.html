@@ -1,5 +1,5 @@
 <div class="transacoes-layout">
-  <app-sidebar (logoutEvent)="logout()" />
+  <app-sidebar [nomeUsuario]="nomeUsuario" (logoutEvent)="logout()" />
 
   <main class="transacoes-main">
     <header class="transacoes-topbar">

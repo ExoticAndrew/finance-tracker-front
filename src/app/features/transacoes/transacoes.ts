@@ -15,9 +15,10 @@ import { Subscription } from 'rxjs';
 })
 export class Transacoes implements OnInit, OnDestroy {
   private transacaoService = inject(TransacaoService);
-  private authService = inject(AuthService);
   private eventosService = inject(EventosService);
   private sub!: Subscription;
+  private authService = inject(AuthService);
+nomeUsuario = this.authService.getNome();
 
   transacoes = signal<Transacao[]>([]);
   totalElements = signal<number>(0);
