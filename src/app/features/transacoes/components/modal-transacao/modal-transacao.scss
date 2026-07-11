@@ -13,9 +13,9 @@
 }
 
 .modal {
-  background: #1e2340;
+  background: var(--cor-superficie);
   border-radius: 16px;
-  border: 1px solid #252d4a;
+  border: 1px solid var(--cor-borda);
   width: 100%;
   max-width: 520px;
   max-height: 90vh;
@@ -28,13 +28,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid #252d4a;
+    border-bottom: 1px solid var(--cor-borda);
   }
 
   &__titulo {
     font-size: 16px;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--cor-texto);
   }
 
   &__fechar {
@@ -42,8 +42,8 @@
     height: 32px;
     border-radius: 8px;
     border: none;
-    background: #252d4a;
-    color: #6b7ea8;
+    background: var(--cor-borda);
+    color: var(--cor-texto-suave);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -87,7 +87,7 @@
     justify-content: flex-end;
     gap: 0.75rem;
     padding: 1rem 1.5rem;
-    border-top: 1px solid #252d4a;
+    border-top: 1px solid var(--cor-borda);
   }
 }
 
@@ -100,30 +100,30 @@
 
   &__label {
     font-size: 11px;
-    color: #6b7ea8;
+    color: var(--cor-texto-suave);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 600;
   }
 
   &__input {
-    background: #151929;
-    border: 1px solid #252d4a;
+    background: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
     border-radius: 9px;
     padding: 0.65rem 0.875rem;
     font-size: 13px;
-    color: #f1f5f9;
+    color: var(--cor-texto);
     font-family: "Inter", sans-serif;
     outline: none;
     transition: border-color 0.15s;
     width: 100%;
 
-    &::placeholder { color: #2d3a52; }
-    &:focus { border-color: #6366f1; }
+    &::placeholder { color: var(--cor-texto-suave); }
+    &:focus { border-color: var(--cor-primaria); }
 
     option {
-      background: #1e2340;
-      color: #f1f5f9;
+      background: var(--cor-superficie);
+      color: var(--cor-texto);
     }
   }
 
@@ -146,9 +146,9 @@
   gap: 6px;
   padding: 0.6rem;
   border-radius: 9px;
-  border: 1px solid #252d4a;
-  background: #151929;
-  color: #6b7ea8;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-suave);
   cursor: pointer;
   font-size: 12px;
   font-weight: 600;
@@ -156,7 +156,7 @@
   transition: all 0.15s;
   i { font-size: 15px; }
 
-  &:hover { border-color: #6366f1; color: #f1f5f9; }
+  &:hover { border-color: var(--cor-primaria); color: var(--cor-texto); }
 
   &.ativo-receita {
     background: rgba(16,185,129,0.1);
@@ -188,6 +188,6 @@
   &:hover:not(:disabled) { opacity: 0.85; }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  &--primary  { background: #6366f1; color: #fff; }
-  &--secondary { background: #252d4a; color: #94a3b8; }
+  &--primary  { background: var(--cor-primaria); color: #fff; }
+  &--secondary { background: var(--cor-borda); color: var(--cor-texto-suave); }
 }

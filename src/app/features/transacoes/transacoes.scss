@@ -1,9 +1,10 @@
 .transacoes-layout {
   display: flex;
   min-height: 100vh;
-  background: #151929;
+  background: var(--cor-fundo);
   font-family: "Inter", sans-serif;
-  color: #f1f5f9;
+  color: var(--cor-texto);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .transacoes-main {
@@ -22,12 +23,12 @@
   h1 {
     font-size: 18px;
     font-weight: 700;
-    color: #f1f5f9;
+    color: var(--cor-texto);
   }
 
   p {
     font-size: 12px;
-    color: #4b5e7a;
+    color: var(--cor-texto-suave);
     margin-top: 3px;
   }
 
@@ -42,7 +43,7 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  background: #6366f1;
+  background: var(--cor-primaria);
   color: #fff;
   border: none;
   border-radius: 10px;
