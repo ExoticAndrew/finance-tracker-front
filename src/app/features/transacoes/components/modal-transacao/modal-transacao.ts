@@ -28,10 +28,12 @@ export class ModalTransacao implements OnInit {
   data = '';
   observacoes = '';
 
-  categorias = [
-    'ALIMENTACAO', 'TRANSPORTE', 'MORADIA', 'SAUDE',
-    'EDUCACAO', 'LAZER', 'SALARIO', 'INVESTIMENTO', 'OUTRAS'
-  ];
+  private categoriasReceita = ['SALARIO', 'INVESTIMENTO', 'OUTRAS'];
+private categoriasDespesa = ['ALIMENTACAO', 'TRANSPORTE', 'MORADIA', 'SAUDE', 'EDUCACAO', 'LAZER', 'OUTRAS'];
+
+get categorias(): string[] {
+  return this.tipo === 'RECEITA' ? this.categoriasReceita : this.categoriasDespesa;
+}
 
   get isEdicao(): boolean {
     return !!this.transacao;

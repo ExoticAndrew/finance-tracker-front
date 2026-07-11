@@ -23,25 +23,26 @@ export class TopCards implements OnChanges {
   totalDespesasMes = 0;
   variacaoReceita: number | null = 0;
   variacaoDespesa: number | null = 0;
+  corReceita: 'up' | 'down' | 'neutro' = 'neutro';
+  corDespesa: 'up' | 'down' | 'neutro' = 'neutro';
 
   ngOnChanges(): void {
     this.transacaoService.getComparativoMensal().subscribe(dados => {
       this.totalReceitasMes = dados.receitaAtual;
       this.totalDespesasMes = dados.despesaAtual;
+
       this.variacaoReceita = this.calcularVariacao(dados.receitaAtual, dados.receitaAnterior);
       this.variacaoDespesa = this.calcularVariacao(dados.despesaAtual, dados.despesaAnterior);
+
+      this.corReceita = this.calcularCor(this.variacaoReceita);
+      this.corDespesa = this.calcularCor(this.variacaoDespesa);
     });
     setTimeout(() => this.renderSparklines(), 50);
   }
 
-  get corReceita(): 'up' | 'down' | 'neutro' {
-    if (this.variacaoReceita === null) return 'neutro';
-    return this.variacaoReceita >= 0 ? 'up' : 'down';
-  }
-
-  get corDespesa(): 'up' | 'down' | 'neutro' {
-    if (this.variacaoDespesa === null) return 'neutro';
-    return this.variacaoDespesa >= 0 ? 'up' : 'down';
+  private calcularCor(variacao: number | null): 'up' | 'down' | 'neutro' {
+    if (variacao === null) return 'neutro';
+    return variacao >= 0 ? 'up' : 'down';
   }
 
   private calcularVariacao(atual: number, anterior: number): number | null {
