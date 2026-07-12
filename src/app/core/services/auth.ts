@@ -58,4 +58,8 @@ export class AuthService {
   getNome(): string {
     return localStorage.getItem(this.NOME_KEY) ?? 'Usuário';
   }
+  salvarSessao(token: string, nome: string): void {
+    localStorage.setItem(this.TOKEN_KEY, token);
+    localStorage.setItem(this.NOME_KEY, nome);
+  }
 }

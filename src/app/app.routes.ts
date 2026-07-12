@@ -5,6 +5,7 @@ import { Transacoes } from './features/transacoes/transacoes';
 import { Login } from './features/auth/login/login';
 import { Cadastro } from './features/auth/cadastro/cadastro';
 import { authGuard, publicGuard } from './core/guards/auth.guard';
+import { Oauth2Callback } from './features/auth/oauth2-callback/oauth2-callback';
 
 export const routes: Routes = [
   { path: '', component: Landing },
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'transacoes', component: Transacoes, canActivate: [authGuard] },
   { path: 'login',      component: Login,      canActivate: [publicGuard] },
   { path: 'cadastro',   component: Cadastro,   canActivate: [publicGuard] },
+  { path: 'oauth2/callback', component: Oauth2Callback },
   { path: '**', redirectTo: '' }
 ];
