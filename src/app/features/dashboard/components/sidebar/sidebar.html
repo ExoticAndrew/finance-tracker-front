@@ -49,3 +49,26 @@
     </div>
   </div>
 </aside>
+
+<nav class="bottom-nav">
+  <a class="bottom-nav-item" routerLink="/dashboard" routerLinkActive="active-mobile" [routerLinkActiveOptions]="{exact: true}">
+    <i class="ti ti-layout-dashboard"></i>
+    <span>Início</span>
+  </a>
+  <a class="bottom-nav-item" routerLink="/transacoes" routerLinkActive="active-mobile">
+    <i class="ti ti-arrows-exchange"></i>
+    <span>Transações</span>
+  </a>
+  <a class="bottom-nav-item" routerLink="/dashboard">
+    <i class="ti ti-chart-bar"></i>
+    <span>Relatórios</span>
+  </a>
+  <a class="bottom-nav-item" routerLink="/dashboard">
+    <i class="ti ti-wallet"></i>
+    <span>Saldo</span>
+  </a>
+  <button class="bottom-nav-item bottom-nav-item--logout" (click)="logoutEvent.emit()">
+    <i class="ti ti-logout"></i>
+    <span>Sair</span>
+  </button>
+</nav>

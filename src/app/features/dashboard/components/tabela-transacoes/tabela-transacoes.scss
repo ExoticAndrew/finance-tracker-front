@@ -267,3 +267,22 @@
     &:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
   }
 }
+@media (max-width: 768px) {
+  .tabela-card {
+    padding: 1rem;
+  }
+
+  .tabela-row {
+    grid-template-columns: 1fr auto auto;
+    gap: 0.5rem;
+
+    &__data-wrap,
+    &__tipo-badge {
+      display: none;
+    }
+
+    &__valor {
+      text-align: right;
+    }
+  }
+}

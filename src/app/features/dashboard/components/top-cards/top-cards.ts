@@ -28,14 +28,16 @@ export class TopCards implements OnChanges {
 
   ngOnChanges(): void {
     this.transacaoService.getComparativoMensal().subscribe(dados => {
-      this.totalReceitasMes = dados.receitaAtual;
-      this.totalDespesasMes = dados.despesaAtual;
+      setTimeout(() => {
+        this.totalReceitasMes = dados.receitaAtual;
+        this.totalDespesasMes = dados.despesaAtual;
 
-      this.variacaoReceita = this.calcularVariacao(dados.receitaAtual, dados.receitaAnterior);
-      this.variacaoDespesa = this.calcularVariacao(dados.despesaAtual, dados.despesaAnterior);
+        this.variacaoReceita = this.calcularVariacao(dados.receitaAtual, dados.receitaAnterior);
+        this.variacaoDespesa = this.calcularVariacao(dados.despesaAtual, dados.despesaAnterior);
 
-      this.corReceita = this.calcularCor(this.variacaoReceita);
-      this.corDespesa = this.calcularCor(this.variacaoDespesa);
+        this.corReceita = this.calcularCor(this.variacaoReceita);
+        this.corDespesa = this.calcularCor(this.variacaoDespesa);
+      }, 0);
     });
     setTimeout(() => this.renderSparklines(), 50);
   }

@@ -52,3 +52,12 @@
   80% { opacity: 1; }
   100% { opacity: 0; }
 }
+@media (max-width: 480px) {
+  .card-saldo {
+    padding: 1.5rem;
+
+    .saldo-valor {
+      font-size: 1.6rem;
+    }
+  }
+}

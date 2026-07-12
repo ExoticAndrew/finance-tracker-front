@@ -81,3 +81,20 @@
     opacity: 0.9;
   }
 }
+@media (max-width: 480px) {
+  .top-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 0.9rem 1rem;
+
+    &__sparkline {
+      display: none;
+    }
+
+    &__value {
+      font-size: 15px;
+    }
+  }
+}
