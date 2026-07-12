@@ -267,9 +267,24 @@
     &:hover { background: rgba(239,68,68,0.1); color: #ef4444; }
   }
 }
+
 @media (max-width: 768px) {
   .tabela-card {
     padding: 1rem;
+  }
+
+  .tabela-card__actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .filter {
+    flex: 1;
+    min-width: 130px;
+  }
+
+  .tabela-card__ver-todas {
+    width: 100%;
   }
 
   .tabela-row {
