@@ -94,3 +94,17 @@
   0%, 100% { opacity: 0.5; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.1); }
 }
+@media (max-width: 768px) {
+  .auth-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-lado-esquerdo {
+    display: none;
+  }
+
+  .auth-lado-direito {
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+  }
+}
