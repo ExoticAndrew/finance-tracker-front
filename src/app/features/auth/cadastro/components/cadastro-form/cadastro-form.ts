@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../../core/services/auth';
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-cadastro-form',
@@ -23,6 +24,8 @@ export class CadastroForm {
   carregando = signal(false);
   erroSenha = false;
   erro = signal('');
+
+  googleAuthUrl = `${environment.apiUrl}/oauth2/authorization/google`;
 
   private router = inject(Router);
   private authService = inject(AuthService);
