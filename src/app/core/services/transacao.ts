@@ -32,6 +32,10 @@ export interface ResumoMensal {
   totalReceitas: number;
   totalDespesas: number;
 }
+export interface CategoriaResumo {
+  categoria: string;
+  total: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class TransacaoService {
@@ -48,6 +52,9 @@ export class TransacaoService {
 
   getSaldo(): Observable<number> {
     return this.http.get<number>(`${this.API_URL}/saldo`);
+  }
+  getRankingCategorias(ano: number): Observable<CategoriaResumo[]> {
+    return this.http.get<CategoriaResumo[]>(`${this.API_URL}/resumo/categorias?ano=${ano}`);
   }
 
   getTotalPorTipo(tipo: 'RECEITA' | 'DESPESA'): Observable<number> {

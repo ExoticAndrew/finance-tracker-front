@@ -29,14 +29,15 @@
         [anosDisponiveis]="anosDisponiveis"
         (anoChange)="onAnoChange($event)" />
 
+      <app-destaque-meses [resumo]="resumoMensal()" />
+
+      <app-ranking-categorias [ranking]="rankingCategorias()" />
+
       <app-analise-mensal [resumo]="resumoMensal()" />
 
-<app-projecao-anual [resumo]="resumoMensal()" [ano]="anoSelecionado()" />
+      <app-projecao-anual [resumo]="resumoMensal()" [ano]="anoSelecionado()" />
 
-<app-destaque-meses [resumo]="resumoMensal()" />
-
-<app-insights-anuais [resumo]="resumoMensal()" [ano]="anoSelecionado()" />
-
+      <app-insights-anuais [resumo]="resumoMensal()" [ano]="anoSelecionado()" />
     </div>
   </main>
 </div>

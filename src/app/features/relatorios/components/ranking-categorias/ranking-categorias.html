@@ -1,0 +1,34 @@
+<div class="card-ranking">
+  <div class="card-header">
+    <div>
+      <h3>Onde seu dinheiro foi</h3>
+      <p>Ranking de categorias com mais despesas no ano</p>
+    </div>
+  </div>
+
+  @if (itens.length === 0) {
+    <p class="sem-dados">Sem despesas registradas neste ano.</p>
+  } @else {
+    <div class="lista-ranking">
+      @for (item of itens; track item.categoria) {
+        <div class="item-ranking">
+          <div class="item-ranking-icone" [style.background]="item.cor + '1f'" [style.color]="item.cor">
+            <i [class]="'ti ' + item.icone"></i>
+          </div>
+
+          <div class="item-ranking-info">
+            <div class="item-ranking-topo">
+              <span class="item-ranking-label">{{ item.label }}</span>
+              <span class="item-ranking-valor">R$ {{ item.total.toLocaleString('pt-BR') }}</span>
+            </div>
+            <div class="item-ranking-barra-fundo">
+              <div class="item-ranking-barra" [style.width.%]="item.percentual" [style.background]="item.cor"></div>
+            </div>
+          </div>
+
+          <span class="item-ranking-percentual">{{ item.percentual.toFixed(0) }}%</span>
+        </div>
+      }
+    </div>
+  }
+</div>
