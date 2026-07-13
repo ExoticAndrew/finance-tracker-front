@@ -1,0 +1,27 @@
+<div class="card-insights">
+  <div class="card-header">
+    <div class="titulo-icone">
+      <i class="ti ti-sparkles"></i>
+      <h3>Resumo Inteligente de {{ ano }}</h3>
+    </div>
+  </div>
+
+  @if (cards.length === 0) {
+    <p class="sem-dados">Sem dados suficientes neste ano.</p>
+  } @else {
+    <div class="grid-cards-insight">
+      @for (card of cards; track card.rotulo) {
+        <div
+          class="mini-card"
+          [class.mini-card--positivo]="card.tom === 'positivo'"
+          [class.mini-card--negativo]="card.tom === 'negativo'">
+          <div class="mini-card-icone">
+            <i [class]="'ti ' + card.icone"></i>
+          </div>
+          <span class="mini-card-rotulo">{{ card.rotulo }}</span>
+          <span class="mini-card-valor">{{ card.valor }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

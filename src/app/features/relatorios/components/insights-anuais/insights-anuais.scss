@@ -1,0 +1,97 @@
+.card-insights {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.card-header {
+  margin-bottom: 1.25rem;
+}
+
+.titulo-icone {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  i {
+    font-size: 18px;
+    color: #fbbf24;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cor-texto);
+  }
+}
+
+.grid-cards-insight {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mini-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.mini-card-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--cor-texto-suave);
+
+  i {
+    font-size: 16px;
+  }
+}
+
+.mini-card--positivo .mini-card-icone {
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ade80;
+}
+
+.mini-card--negativo .mini-card-icone {
+  background: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+}
+
+.mini-card-rotulo {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.mini-card-valor {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cor-texto);
+  line-height: 1.35;
+}
+
+.sem-dados {
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+  text-align: center;
+  padding: 1.5rem 0;
+}

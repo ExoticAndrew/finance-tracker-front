@@ -6,10 +6,12 @@ import { Sidebar } from '../dashboard/components/sidebar/sidebar';
 import { GraficoAnual } from './components/grafico-anual/grafico-anual';
 import { AnaliseMensal } from './components/analise-mensal/analise-mensal';
 import { DestaqueMeses } from './components/destaque-meses/destaque-meses';
+import { InsightsAnuais } from './components/insights-anuais/insights-anuais';
+import { ProjecaoAnual } from './components/projecao-anual/projecao-anual';
 
 @Component({
   selector: 'app-relatorios',
-  imports: [Sidebar, GraficoAnual, AnaliseMensal, DestaqueMeses],
+  imports: [Sidebar, GraficoAnual, AnaliseMensal, DestaqueMeses, InsightsAnuais, ProjecaoAnual],
   templateUrl: './relatorios.html',
   styleUrl: './relatorios.scss'
 })

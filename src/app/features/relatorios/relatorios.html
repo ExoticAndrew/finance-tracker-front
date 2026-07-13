@@ -29,9 +29,14 @@
         [anosDisponiveis]="anosDisponiveis"
         (anoChange)="onAnoChange($event)" />
 
-      <app-destaque-meses [resumo]="resumoMensal()" />
-
       <app-analise-mensal [resumo]="resumoMensal()" />
+
+<app-projecao-anual [resumo]="resumoMensal()" [ano]="anoSelecionado()" />
+
+<app-destaque-meses [resumo]="resumoMensal()" />
+
+<app-insights-anuais [resumo]="resumoMensal()" [ano]="anoSelecionado()" />
+
     </div>
   </main>
 </div>

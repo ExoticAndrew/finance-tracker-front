@@ -1,0 +1,40 @@
+@if (mostrar) {
+  <div class="card-projecao">
+    <div class="card-header">
+      <div class="titulo-icone">
+        <i class="ti ti-chart-line"></i>
+        <h3>Projeção para o fim de {{ ano }}</h3>
+      </div>
+      <span class="badge-estimativa">Estimativa</span>
+    </div>
+
+    <p class="aviso-projecao">
+      Mantendo a média mensal atual pelos próximos {{ mesesRestantes }} {{ mesesRestantes === 1 ? 'mês' : 'meses' }}, você deve fechar o ano com:
+    </p>
+
+    <div class="grid-projecao">
+      <div class="item-projecao">
+        <span class="item-label">Receita</span>
+        <span class="item-valor valor-bom">
+          R$ {{ receitaProjetada.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) }}
+        </span>
+      </div>
+      <div class="item-projecao">
+        <span class="item-label">Despesas</span>
+        <span class="item-valor valor-ruim">
+          R$ {{ despesaProjetada.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) }}
+        </span>
+      </div>
+      <div class="item-projecao">
+        <span class="item-label">Saldo</span>
+        <span class="item-valor" [class.valor-bom]="saldoProjetado >= 0" [class.valor-ruim]="saldoProjetado < 0">
+          {{ saldoProjetado >= 0 ? '+' : '' }}R$ {{ saldoProjetado.toLocaleString('pt-BR', { maximumFractionDigits: 0 }) }}
+        </span>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      *Estimativa simples baseada na média mensal registrada — não considera sazonalidade, bônus ou gastos pontuais.
+    </p>
+  </div>
+}
