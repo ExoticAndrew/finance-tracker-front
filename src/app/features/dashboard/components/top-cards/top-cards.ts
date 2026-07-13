@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, ElementRef, ViewChildren, QueryList, inject } from '@angular/core';
+import { Component, Input, OnChanges, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
-import { TransacaoService } from '../../../../core/services/transacao';
+import { ComparativoMensal } from '../../../../core/services/transacao';
 Chart.register(...registerables);
 
 @Component({
@@ -13,11 +13,11 @@ Chart.register(...registerables);
 export class TopCards implements OnChanges {
   @Input() totalReceitas = 0;
   @Input() totalDespesas = 0;
+  @Input() comparativo: ComparativoMensal | null = null;
 
   @ViewChildren('sparkline') sparklineRefs!: QueryList<ElementRef<HTMLCanvasElement>>;
 
   private charts: Chart[] = [];
-  private transacaoService = inject(TransacaoService);
 
   totalReceitasMes = 0;
   totalDespesasMes = 0;
@@ -27,18 +27,16 @@ export class TopCards implements OnChanges {
   corDespesa: 'up' | 'down' | 'neutro' = 'neutro';
 
   ngOnChanges(): void {
-    this.transacaoService.getComparativoMensal().subscribe(dados => {
-      setTimeout(() => {
-        this.totalReceitasMes = dados.receitaAtual;
-        this.totalDespesasMes = dados.despesaAtual;
+    if (this.comparativo) {
+      this.totalReceitasMes = this.comparativo.receitaAtual;
+      this.totalDespesasMes = this.comparativo.despesaAtual;
 
-        this.variacaoReceita = this.calcularVariacao(dados.receitaAtual, dados.receitaAnterior);
-        this.variacaoDespesa = this.calcularVariacao(dados.despesaAtual, dados.despesaAnterior);
+      this.variacaoReceita = this.calcularVariacao(this.comparativo.receitaAtual, this.comparativo.receitaAnterior);
+      this.variacaoDespesa = this.calcularVariacao(this.comparativo.despesaAtual, this.comparativo.despesaAnterior);
 
-        this.corReceita = this.calcularCor(this.variacaoReceita);
-        this.corDespesa = this.calcularCor(this.variacaoDespesa);
-      }, 0);
-    });
+      this.corReceita = this.calcularCor(this.variacaoReceita);
+      this.corDespesa = this.calcularCor(this.variacaoDespesa);
+    }
     setTimeout(() => this.renderSparklines(), 50);
   }
 

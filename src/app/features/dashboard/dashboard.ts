@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, OnDestroy, signal } from '@angular/core';
-import { TransacaoService, Transacao } from '../../core/services/transacao';
+import { TransacaoService, Transacao, ComparativoMensal } from '../../core/services/transacao';
 import { AuthService } from '../../core/services/auth';
 import { EventosService } from '../../core/services/eventos';
 import { TemaService } from '../../core/services/tema';
@@ -32,6 +32,7 @@ export class Dashboard implements OnInit, OnDestroy {
   totalReceitas = signal<number>(0);
   totalDespesas = signal<number>(0);
   transacoes = signal<Transacao[]>([]);
+  comparativo = signal<ComparativoMensal | null>(null);
   carregando = signal<boolean>(true);
 
   ngOnInit(): void {
@@ -52,13 +53,15 @@ export class Dashboard implements OnInit, OnDestroy {
       saldo: this.transacaoService.getSaldo(),
       receitas: this.transacaoService.getTotalPorTipo('RECEITA'),
       despesas: this.transacaoService.getTotalPorTipo('DESPESA'),
-      transacoes: this.transacaoService.listar(0, 5)
+      transacoes: this.transacaoService.listar(0, 5),
+      comparativo: this.transacaoService.getComparativoMensal()
     }).subscribe({
       next: (res) => {
         this.saldo.set(Number(res.saldo));
         this.totalReceitas.set(Number(res.receitas));
         this.totalDespesas.set(Number(res.despesas));
         this.transacoes.set(res.transacoes.content);
+        this.comparativo.set(res.comparativo);
         this.carregando.set(false);
       },
       error: () => this.carregando.set(false)
