@@ -1,0 +1,86 @@
+.card-analise-mensal {
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.card-header {
+  margin-bottom: 1.25rem;
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cor-texto);
+  }
+
+  p {
+    font-size: 12px;
+    color: var(--cor-texto-suave);
+    margin-top: 2px;
+  }
+}
+
+.sem-dados {
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.tabela-wrapper {
+  overflow-x: auto;
+}
+
+.tabela-analise {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  white-space: nowrap;
+
+  th {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    color: var(--cor-texto-suave);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  td {
+    padding: 0.65rem 0.75rem;
+    color: var(--cor-texto);
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.saldo-negativo {
+  color: #f87171;
+}
+
+.valor-bom {
+  color: #4ade80;
+}
+
+.valor-ruim {
+  color: #f87171;
+}
+
+.sem-variacao {
+  color: var(--cor-texto-suave);
+}
+
+@media (max-width: 768px) {
+  .tabela-analise {
+    font-size: 12px;
+
+    th, td {
+      padding: 0.5rem;
+    }
+  }
+}

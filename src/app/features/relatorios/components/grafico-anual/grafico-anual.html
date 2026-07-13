@@ -1,0 +1,21 @@
+<div class="card-grafico-anual">
+  <div class="card-header">
+    <div>
+      <h3>Receitas x Despesas</h3>
+      <p>Evolução mensal do ano selecionado</p>
+    </div>
+
+    <select
+      class="seletor-ano"
+      [value]="anoSelecionado"
+      (change)="onAnoChange(+$any($event.target).value)">
+      @for (ano of anosDisponiveis; track ano) {
+        <option [value]="ano">{{ ano }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas #chartCanvas></canvas>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+@use '../../styles/layout-shell';
+
+.relatorios-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0 1.5rem 1.5rem;
+  overflow-y: auto;
+  min-width: 0;
+
+  @media (max-width: 768px) {
+    padding-bottom: 5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

@@ -1,0 +1,37 @@
+<div class="layout-shell">
+  <app-sidebar [nomeUsuario]="nomeUsuario" (logoutEvent)="logout()" />
+
+  <main class="layout-main">
+    <header class="layout-topbar">
+      <div>
+        <h1>Relatórios</h1>
+        <p>Analise a evolução das suas finanças ao longo do ano.</p>
+      </div>
+
+      <div class="topbar-acoes">
+        <button
+          type="button"
+          class="btn-tema"
+          (click)="temaService.alternar()"
+          aria-label="Alternar tema claro/escuro">
+          <i
+            class="ti"
+            [class.ti-sun]="temaService.tema() === 'escuro'"
+            [class.ti-moon]="temaService.tema() === 'claro'"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="relatorios-content">
+      <app-grafico-anual
+        [resumo]="resumoMensal()"
+        [anoSelecionado]="anoSelecionado()"
+        [anosDisponiveis]="anosDisponiveis"
+        (anoChange)="onAnoChange($event)" />
+
+      <app-destaque-meses [resumo]="resumoMensal()" />
+
+      <app-analise-mensal [resumo]="resumoMensal()" />
+    </div>
+  </main>
+</div>

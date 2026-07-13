@@ -1,0 +1,92 @@
+.destaques-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card-destaque {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid transparent;
+}
+
+.card-destaque--melhor {
+  border-left-color: #4ade80;
+}
+
+.card-destaque--pior {
+  border-left-color: #f87171;
+}
+
+.destaque-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex-shrink: 0;
+
+  i {
+    font-size: 22px;
+  }
+}
+
+.destaque-icone--melhor {
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ade80;
+}
+
+.destaque-icone--pior {
+  background: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+}
+
+.destaque-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.destaque-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.destaque-mes {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.destaque-saldo {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.valor-bom {
+  color: #4ade80;
+}
+
+.valor-ruim {
+  color: #f87171;
+}
+
+.sem-dados {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  color: var(--cor-texto-suave);
+  text-align: center;
+  padding: 1.5rem 0;
+}

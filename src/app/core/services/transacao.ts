@@ -27,6 +27,12 @@ export interface ComparativoMensal {
   despesaAnterior: number;
 }
 
+export interface ResumoMensal {
+  mes: number;
+  totalReceitas: number;
+  totalDespesas: number;
+}
+
 @Injectable({ providedIn: 'root' })
 export class TransacaoService {
   private readonly API_URL = `${environment.apiUrl}/api/transacoes`;
@@ -60,8 +66,8 @@ export class TransacaoService {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }
 
-  getResumoMensal(ano: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.API_URL}/resumo/mensal?ano=${ano}`);
+  getResumoMensal(ano: number): Observable<ResumoMensal[]> {
+    return this.http.get<ResumoMensal[]>(`${this.API_URL}/resumo/mensal?ano=${ano}`);
   }
 
   getComparativoMensal(): Observable<ComparativoMensal> {

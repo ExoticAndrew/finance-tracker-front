@@ -1,0 +1,33 @@
+<div class="destaques-grid">
+  @if (melhorMes) {
+    <div class="card-destaque card-destaque--melhor">
+      <div class="destaque-icone destaque-icone--melhor">
+        <i class="ti ti-trophy"></i>
+      </div>
+      <div class="destaque-info">
+        <span class="destaque-label">Melhor mês</span>
+        <span class="destaque-mes">{{ melhorMes.nomeMes }}</span>
+        <span class="destaque-saldo valor-bom">{{ melhorMes.saldoFormatado }}</span>
+      </div>
+    </div>
+  }
+
+  @if (piorMes && !mesUnico) {
+    <div class="card-destaque card-destaque--pior">
+      <div class="destaque-icone destaque-icone--pior">
+        <i class="ti ti-trending-down"></i>
+      </div>
+      <div class="destaque-info">
+        <span class="destaque-label">Pior mês</span>
+        <span class="destaque-mes">{{ piorMes.nomeMes }}</span>
+        <span class="destaque-saldo" [class.valor-bom]="piorMes.saldoPositivo" [class.valor-ruim]="!piorMes.saldoPositivo">
+          {{ piorMes.saldoFormatado }}
+        </span>
+      </div>
+    </div>
+  }
+
+  @if (!melhorMes) {
+    <p class="sem-dados">Sem dados suficientes neste ano.</p>
+  }
+</div>

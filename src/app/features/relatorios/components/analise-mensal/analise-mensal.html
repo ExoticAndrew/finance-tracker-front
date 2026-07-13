@@ -1,0 +1,69 @@
+<div class="card-analise-mensal">
+  <div class="card-header">
+    <div>
+      <h3>Indicadores Mensais</h3>
+      <p>Variação e proporção despesa/receita mês a mês</p>
+    </div>
+  </div>
+
+  @if (linhas.length === 0) {
+    <p class="sem-dados">Sem transações registradas neste ano.</p>
+  } @else {
+    <div class="tabela-wrapper">
+      <table class="tabela-analise">
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Receita</th>
+            <th>Despesa</th>
+            <th>Saldo</th>
+            <th>Var. Receita</th>
+            <th>Var. Despesa</th>
+            <th>Despesa/Receita</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (linha of linhas; track linha.mes) {
+            <tr>
+              <td>{{ linha.nomeMes }}</td>
+              <td>R$ {{ linha.receita.toLocaleString('pt-BR') }}</td>
+              <td>R$ {{ linha.despesa.toLocaleString('pt-BR') }}</td>
+              <td [class.saldo-negativo]="linha.saldo < 0">
+                R$ {{ linha.saldo.toLocaleString('pt-BR') }}
+              </td>
+              <td>
+                @if (linha.variacaoReceita === null) {
+                  <span class="sem-variacao">—</span>
+                } @else if (linha.variacaoReceita === Infinity) {
+                  <span class="valor-bom">Novo</span>
+                } @else {
+                  <span [class.valor-bom]="linha.variacaoReceita >= 0" [class.valor-ruim]="linha.variacaoReceita < 0">
+                    {{ linha.variacaoReceita >= 0 ? '+' : '' }}{{ linha.variacaoReceita.toFixed(1) }}%
+                  </span>
+                }
+              </td>
+              <td>
+                @if (linha.variacaoDespesa === null) {
+                  <span class="sem-variacao">—</span>
+                } @else if (linha.variacaoDespesa === Infinity) {
+                  <span class="valor-ruim">Novo</span>
+                } @else {
+                  <span [class.valor-ruim]="linha.variacaoDespesa > 0" [class.valor-bom]="linha.variacaoDespesa <= 0">
+                    {{ linha.variacaoDespesa >= 0 ? '+' : '' }}{{ linha.variacaoDespesa.toFixed(1) }}%
+                  </span>
+                }
+              </td>
+              <td>
+                @if (linha.percentualDespesaReceita === null) {
+                  <span class="sem-variacao">—</span>
+                } @else {
+                  {{ linha.percentualDespesaReceita.toFixed(0) }}%
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
