@@ -22,7 +22,7 @@ export class TabelaTransacoes {
   transacoesFiltradas = computed(() =>
     this._transacoes().filter(t => {
       const nomeOk = t.descricao.toLowerCase().includes(this.filtroNome().toLowerCase());
-      const dataOk = !this.filtroData() || t.data.includes(this.filtroData());
+      const dataOk = this.dataCorresponde(t.data, this.filtroData());
       return nomeOk && dataOk;
     })
   );
@@ -32,6 +32,30 @@ export class TabelaTransacoes {
 
   toggleMenu(id: number): void {
     this.menuAbertoId.set(this.menuAbertoId() === id ? null : id);
+  }
+
+  private formatarDataBR(dataIso: string): string {
+    const [ano, mes, dia] = dataIso.substring(0, 10).split('-');
+    return `${dia}/${mes}/${ano}`;
+  }
+
+  private dataCorresponde(dataTransacao: string, filtro: string): boolean {
+    if (!filtro) return true;
+
+    const dataBR = this.formatarDataBR(dataTransacao);
+    const [dia, mes, ano] = dataBR.split('/');
+
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(filtro)) {
+      return dataBR === filtro;
+    }
+    if (/^\d{2}\/\d{4}$/.test(filtro)) {
+      const [mesFiltro, anoFiltro] = filtro.split('/');
+      return mes === mesFiltro && ano === anoFiltro;
+    }
+    if (/^\d{4}$/.test(filtro)) {
+      return ano === filtro;
+    }
+    return dataBR.includes(filtro);
   }
 
   getHorario(data: string): string {
