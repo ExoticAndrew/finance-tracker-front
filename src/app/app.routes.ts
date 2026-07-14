@@ -10,6 +10,7 @@ import { Relatorios } from './features/relatorios/relatorios';
 import { Saldo } from './features/saldo/saldo';
 import { Configuracoes } from './features/configuracoes/configuracoes';
 import { Seguranca } from './features/seguranca/seguranca';
+import { Suporte } from './features/suporte/suporte';
 
 export const routes: Routes = [
   { path: '', component: Landing },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'saldo',      component: Saldo,      canActivate: [authGuard] },
   { path: 'configuracoes', component: Configuracoes, canActivate: [authGuard] },
   { path: 'seguranca',  component: Seguranca,  canActivate: [authGuard] },
+  { path: 'suporte',    component: Suporte,    canActivate: [authGuard] },
   { path: 'transacoes', component: Transacoes, canActivate: [authGuard] },
   { path: 'login',      component: Login,      canActivate: [publicGuard] },
   { path: 'cadastro',   component: Cadastro,   canActivate: [publicGuard] },

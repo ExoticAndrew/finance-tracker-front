@@ -1,0 +1,70 @@
+<div class="layout-shell">
+  <app-sidebar [nomeUsuario]="nomeUsuario" (logoutEvent)="logout()" />
+
+  <main class="layout-main">
+    <header class="layout-topbar">
+      <div>
+        <h1>Suporte</h1>
+        <p>Dúvidas frequentes e como falar com o desenvolvedor.</p>
+      </div>
+    </header>
+
+    <div class="suporte-content">
+      <div class="card-suporte">
+        <div class="secao">
+          <div class="card-header">
+            <i class="ti ti-help-circle card-icone"></i>
+            <div>
+              <h3>Perguntas frequentes</h3>
+              <p>As dúvidas mais comuns sobre o FinTrack</p>
+            </div>
+          </div>
+
+          <div class="lista-faq">
+            @for (faq of faqs; track faq.pergunta; let i = $index) {
+              <div class="item-faq">
+                <button class="pergunta-faq" (click)="toggleFaq(i)">
+                  <span>{{ faq.pergunta }}</span>
+                  <i
+                    class="ti"
+                    [class.ti-chevron-down]="perguntaAberta() !== i"
+                    [class.ti-chevron-up]="perguntaAberta() === i"></i>
+                </button>
+                @if (perguntaAberta() === i) {
+                  <p class="resposta-faq">{{ faq.resposta }}</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <hr class="divisor" />
+
+        <div class="secao">
+          <div class="card-header">
+            <i class="ti ti-mail card-icone"></i>
+            <div>
+              <h3>Fale com o desenvolvedor</h3>
+              <p>Este é um projeto solo — fale direto comigo</p>
+            </div>
+          </div>
+
+          <div class="lista-contato">
+            <a href="mailto:andrewantunes61@gmail.com" class="link-contato">
+              <i class="ti ti-mail"></i>
+              <span>andrewantunes61&#64;gmail.com</span>
+            </a>
+            <a href="https://github.com/ExoticAndrew" target="_blank" rel="noopener" class="link-contato">
+              <i class="ti ti-brand-github"></i>
+              <span>github.com/ExoticAndrew</span>
+            </a>
+            <a href="https://www.linkedin.com/in/andrew-antunes-93611b326/" target="_blank" rel="noopener" class="link-contato">
+              <i class="ti ti-brand-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
