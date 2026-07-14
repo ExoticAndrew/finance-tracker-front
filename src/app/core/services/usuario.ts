@@ -7,6 +7,7 @@ export interface Usuario {
   id: number;
   nome: string;
   email: string;
+  metodoLogin: 'LOCAL' | 'GOOGLE';
 }
 
 @Injectable({ providedIn: 'root' })
@@ -20,5 +21,9 @@ export class UsuarioService {
 
   atualizarNome(nome: string): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.API_URL}/me`, { nome });
+  }
+
+  alterarSenha(senhaAtual: string, novaSenha: string): Observable<void> {
+    return this.http.put<void>(`${this.API_URL}/me/senha`, { senhaAtual, novaSenha });
   }
 }

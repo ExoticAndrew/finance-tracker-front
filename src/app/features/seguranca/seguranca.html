@@ -1,0 +1,99 @@
+<div class="layout-shell">
+  <app-sidebar [nomeUsuario]="nomeUsuario" (logoutEvent)="logout()" />
+
+  <main class="layout-main">
+    <header class="layout-topbar">
+      <div>
+        <h1>Segurança</h1>
+        <p>Gerencie a senha e veja as proteções do seu sistema.</p>
+      </div>
+    </header>
+
+    <div class="seguranca-content">
+      @if (perfil()?.metodoLogin === 'GOOGLE') {
+        <div class="card-seguranca card-google">
+          <div class="card-header">
+            <i class="ti ti-brand-google card-icone"></i>
+            <div>
+              <h3>Login com Google</h3>
+              <p>Sua autenticação é gerenciada pela sua Conta Google</p>
+            </div>
+          </div>
+          <p class="texto-google">
+            Você entra no FinTrack usando sua Conta Google, então não existe uma senha própria do sistema pra alterar.
+            Para gerenciar a segurança do seu login, acesse as configurações da sua Conta Google.
+          </p>
+        </div>
+      } @else {
+        <div class="card-seguranca">
+          <div class="card-header">
+            <i class="ti ti-key card-icone"></i>
+            <div>
+              <h3>Alterar senha</h3>
+              <p>Sua senha atual é necessária para confirmar a troca</p>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label>Senha atual</label>
+            <input type="password" [(ngModel)]="senhaAtual" [disabled]="salvando()" />
+          </div>
+
+          <div class="campo">
+            <label>Nova senha</label>
+            <input type="password" [(ngModel)]="novaSenha" [disabled]="salvando()" />
+          </div>
+
+          <div class="campo">
+            <label>Confirmar nova senha</label>
+            <input type="password" [(ngModel)]="confirmarSenha" [disabled]="salvando()" />
+          </div>
+
+          @if (erro()) {
+            <span class="mensagem-erro">{{ erro() }}</span>
+          }
+          @if (sucesso()) {
+            <span class="mensagem-sucesso">Senha alterada com sucesso!</span>
+          }
+
+          <button class="btn-alterar" (click)="alterarSenha()" [disabled]="salvando()">
+            {{ salvando() ? 'Alterando...' : 'Alterar senha' }}
+          </button>
+        </div>
+      }
+
+     <div class="card-seguranca">
+        <div class="card-header">
+          <i class="ti ti-shield-check card-icone"></i>
+          <div>
+            <h3>Sua conta está protegida</h3>
+            <p>O que garante a segurança do seu acesso</p>
+          </div>
+        </div>
+
+        <ul class="lista-check">
+          <li><i class="ti ti-check"></i> Conexão criptografada (HTTPS)</li>
+          <li><i class="ti ti-check"></i> Login seguro (JWT)</li>
+          <li><i class="ti ti-check"></i> Dados protegidos (BCrypt)</li>
+          <li><i class="ti ti-check"></i> Sessão autenticada (OAuth2 Google)</li>
+        </ul>
+      </div>
+
+      <div class="card-seguranca card-dicas">
+        <div class="card-header">
+          <i class="ti ti-bulb card-icone"></i>
+          <div>
+            <h3>Dicas de segurança</h3>
+            <p>Boas práticas para proteger sua conta</p>
+          </div>
+        </div>
+
+        <ul class="lista-dicas">
+          <li>Use uma senha forte, com letras, números e símbolos.</li>
+          <li>Não reutilize a mesma senha em outros serviços.</li>
+          <li>Nunca compartilhe sua senha com outras pessoas.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</div>
