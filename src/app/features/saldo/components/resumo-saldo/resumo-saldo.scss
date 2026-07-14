@@ -1,0 +1,48 @@
+.grid-resumo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mini-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 1.1rem 1.25rem;
+}
+
+.mini-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto-suave);
+}
+
+.mini-card-valor {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.valor-bom {
+  color: #4ade80;
+}
+
+.valor-ruim {
+  color: #f87171;
+}
+
+.sem-dado {
+  color: var(--cor-texto-suave);
+}

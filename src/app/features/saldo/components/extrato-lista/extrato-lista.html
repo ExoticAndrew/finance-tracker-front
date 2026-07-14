@@ -1,0 +1,36 @@
+<div class="card-extrato">
+  <div class="card-header">
+    <h3>Extrato</h3>
+    <p>Movimentações do ano, mais recente primeiro</p>
+  </div>
+
+  @if (linhas.length === 0) {
+    <p class="sem-dados">Nenhuma transação registrada neste ano.</p>
+  } @else {
+    <div class="lista-extrato">
+      @for (linha of linhas; track linha.id) {
+        <div class="linha-extrato">
+          <div class="linha-icone" [style.background]="corCategoria(linha.categoria) + '1f'" [style.color]="corCategoria(linha.categoria)">
+            <i [class]="'ti ' + iconeCategoria(linha.categoria)"></i>
+          </div>
+
+          <div class="linha-info">
+            <span class="linha-desc">{{ linha.descricao }}</span>
+            <span class="linha-cat">{{ labelCategoria(linha.categoria) }} · {{ linha.data | date:"dd/MM/yyyy" }}</span>
+          </div>
+
+          <span class="linha-valor" [class.valor-bom]="linha.tipo === 'RECEITA'" [class.valor-ruim]="linha.tipo === 'DESPESA'">
+            {{ linha.tipo === 'RECEITA' ? '+' : '-' }}R$ {{ linha.valor.toLocaleString('pt-BR') }}
+          </span>
+
+          <div class="linha-saldo">
+            <span class="linha-saldo-label">Saldo após</span>
+            <span class="linha-saldo-valor" [class.valor-bom]="linha.saldoApos >= 0" [class.valor-ruim]="linha.saldoApos < 0">
+              R$ {{ linha.saldoApos.toLocaleString('pt-BR') }}
+            </span>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

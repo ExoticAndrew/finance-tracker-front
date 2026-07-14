@@ -36,6 +36,10 @@ export interface CategoriaResumo {
   categoria: string;
   total: number;
 }
+export interface Extrato {
+  saldoDeArrasto: number;
+  transacoes: Transacao[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class TransacaoService {
@@ -55,6 +59,9 @@ export class TransacaoService {
   }
   getRankingCategorias(ano: number): Observable<CategoriaResumo[]> {
     return this.http.get<CategoriaResumo[]>(`${this.API_URL}/resumo/categorias?ano=${ano}`);
+  }
+  getExtrato(ano: number): Observable<Extrato> {
+    return this.http.get<Extrato>(`${this.API_URL}/extrato?ano=${ano}`);
   }
 
   getTotalPorTipo(tipo: 'RECEITA' | 'DESPESA'): Observable<number> {

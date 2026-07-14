@@ -1,0 +1,33 @@
+@if (resumo) {
+  <div class="grid-resumo">
+    <div class="mini-card">
+      <span class="mini-card-label">Saldo atual</span>
+      <span class="mini-card-valor" [class.valor-bom]="resumo.saldoAtual >= 0" [class.valor-ruim]="resumo.saldoAtual < 0">
+        R$ {{ resumo.saldoAtual.toLocaleString('pt-BR') }}
+      </span>
+    </div>
+
+    <div class="mini-card">
+      <span class="mini-card-label">Maior saldo</span>
+      <span class="mini-card-valor valor-bom">R$ {{ resumo.maiorSaldo.toLocaleString('pt-BR') }}</span>
+    </div>
+
+    <div class="mini-card">
+      <span class="mini-card-label">Menor saldo</span>
+      <span class="mini-card-valor" [class.valor-bom]="resumo.menorSaldo >= 0" [class.valor-ruim]="resumo.menorSaldo < 0">
+        R$ {{ resumo.menorSaldo.toLocaleString('pt-BR') }}
+      </span>
+    </div>
+
+    <div class="mini-card">
+      <span class="mini-card-label">Variação no período</span>
+      @if (resumo.variacaoPercentual === null) {
+        <span class="mini-card-valor sem-dado">—</span>
+      } @else {
+        <span class="mini-card-valor" [class.valor-bom]="resumo.variacaoPercentual >= 0" [class.valor-ruim]="resumo.variacaoPercentual < 0">
+          {{ resumo.variacaoPercentual >= 0 ? '+' : '' }}{{ resumo.variacaoPercentual.toFixed(0) }}%
+        </span>
+      }
+    </div>
+  </div>
+}
