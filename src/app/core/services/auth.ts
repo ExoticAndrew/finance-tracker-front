@@ -62,4 +62,7 @@ export class AuthService {
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem(this.NOME_KEY, nome);
   }
+  atualizarNomeCache(nome: string): void {
+    localStorage.setItem(this.NOME_KEY, nome);
+  }
 }

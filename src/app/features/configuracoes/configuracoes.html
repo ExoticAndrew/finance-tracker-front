@@ -1,0 +1,139 @@
+<div class="layout-shell">
+  <app-sidebar [nomeUsuario]="nomeUsuario" (logoutEvent)="logout()" />
+
+  <main class="layout-main">
+    <header class="layout-topbar">
+      <div>
+        <h1>Configurações</h1>
+        <p>Gerencie seu perfil e preferências.</p>
+      </div>
+    </header>
+
+    <div class="config-grid">
+      <div class="card-config">
+        <div class="card-header">
+          <i class="ti ti-user card-icone"></i>
+          <div>
+            <h3>Perfil</h3>
+            <p>Seu nome e email cadastrados</p>
+          </div>
+        </div>
+
+        @if (perfil(); as p) {
+          <div class="campo">
+            <label>Nome</label>
+            @if (editando()) {
+              <div class="campo-edicao">
+                <input type="text" [(ngModel)]="nomeEditado" [disabled]="salvando()" />
+                <button class="btn-salvar" (click)="salvarNome()" [disabled]="salvando()">
+                  {{ salvando() ? 'Salvando...' : 'Salvar' }}
+                </button>
+                <button class="btn-cancelar" (click)="cancelarEdicao()" [disabled]="salvando()">Cancelar</button>
+              </div>
+              @if (erroNome()) {
+                <span class="mensagem-erro">{{ erroNome() }}</span>
+              }
+            } @else {
+              <div class="campo-exibicao">
+                <span>{{ p.nome }}</span>
+                <button class="btn-editar" (click)="iniciarEdicao()">
+                  <i class="ti ti-pencil"></i> Editar
+                </button>
+              </div>
+              @if (sucessoNome()) {
+                <span class="mensagem-sucesso">Nome atualizado com sucesso!</span>
+              }
+            }
+          </div>
+
+          <div class="campo">
+            <label>Email</label>
+            <div class="campo-exibicao">
+              <span>{{ p.email }}</span>
+              <span class="badge-somente-leitura">Não editável</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="card-config">
+        <div class="card-header">
+          <i class="ti ti-palette card-icone"></i>
+          <div>
+            <h3>Aparência</h3>
+            <p>Escolha entre tema claro ou escuro</p>
+          </div>
+        </div>
+
+        <div class="campo-tema">
+          <span>Tema {{ temaService.tema() === 'escuro' ? 'escuro' : 'claro' }}</span>
+          <button class="btn-tema-toggle" (click)="temaService.alternar()">
+            <i class="ti" [class.ti-sun]="temaService.tema() === 'escuro'" [class.ti-moon]="temaService.tema() === 'claro'"></i>
+            Alternar tema
+          </button>
+        </div>
+      </div>
+
+      <div class="card-config">
+        <div class="card-header">
+          <i class="ti ti-download card-icone"></i>
+          <div>
+            <h3>Exportar dados</h3>
+            <p>Baixe todas as suas transações em CSV</p>
+          </div>
+        </div>
+
+        <button class="btn-exportar" (click)="exportarCSV()" [disabled]="exportando()">
+          <i class="ti ti-file-export"></i>
+          {{ exportando() ? 'Gerando arquivo...' : 'Exportar CSV' }}
+        </button>
+      </div>
+
+      <div class="card-config">
+        <div class="card-header">
+          <i class="ti ti-chart-bar card-icone"></i>
+          <div>
+            <h3>Estatísticas</h3>
+            <p>Um resumo da sua conta</p>
+          </div>
+        </div>
+
+        <div class="lista-estatisticas">
+          <div class="linha-estatistica">
+            <span>Total de transações</span>
+            <span class="valor-estatistica">{{ totalTransacoes() }}</span>
+          </div>
+          <div class="linha-estatistica">
+            <span>Receitas cadastradas</span>
+            <span class="valor-estatistica valor-bom">R$ {{ totalReceitas().toLocaleString('pt-BR') }}</span>
+          </div>
+          <div class="linha-estatistica">
+            <span>Despesas cadastradas</span>
+            <span class="valor-estatistica valor-ruim">R$ {{ totalDespesas().toLocaleString('pt-BR') }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-config card-sobre">
+        <div class="card-header">
+          <i class="ti ti-info-circle card-icone"></i>
+          <div>
+            <h3>Sobre</h3>
+            <p>Informações do aplicativo</p>
+          </div>
+        </div>
+
+        <div class="lista-estatisticas">
+          <div class="linha-estatistica">
+            <span>Versão</span>
+            <span class="valor-estatistica">1.0.0</span>
+          </div>
+          <div class="linha-estatistica">
+            <span>Desenvolvido por</span>
+            <span class="valor-estatistica">Andrew Antunes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

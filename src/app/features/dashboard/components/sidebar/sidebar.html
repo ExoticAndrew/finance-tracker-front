@@ -21,7 +21,7 @@
     <a #navItem class="nav-item" routerLink="/saldo" routerLinkActive="active">
       <i class="ti ti-wallet"></i> Saldo
     </a>
-    <a #navItem class="nav-item" routerLink="/dashboard">
+    <a #navItem class="nav-item" routerLink="/configuracoes" routerLinkActive="active">
       <i class="ti ti-settings"></i> Configurações
     </a>
     <hr class="nav-divider">
@@ -66,6 +66,10 @@
   <a class="bottom-nav-item" routerLink="/saldo" routerLinkActive="active-mobile">
     <i class="ti ti-wallet"></i>
     <span>Saldo</span>
+  </a>
+  <a class="bottom-nav-item" routerLink="/configuracoes" routerLinkActive="active-mobile">
+    <i class="ti ti-settings"></i>
+    <span>Configurações</span>
   </a>
   <button class="bottom-nav-item bottom-nav-item--logout" (click)="logoutEvent.emit()">
     <i class="ti ti-logout"></i>

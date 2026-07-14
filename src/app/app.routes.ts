@@ -8,12 +8,14 @@ import { authGuard, publicGuard } from './core/guards/auth.guard';
 import { Oauth2Callback } from './features/auth/oauth2-callback/oauth2-callback';
 import { Relatorios } from './features/relatorios/relatorios';
 import { Saldo } from './features/saldo/saldo';
+import { Configuracoes } from './features/configuracoes/configuracoes';
 
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'dashboard',  component: Dashboard,  canActivate: [authGuard] },
   { path: 'relatorios', component: Relatorios, canActivate: [authGuard] },
   { path: 'saldo',      component: Saldo,      canActivate: [authGuard] },
+  { path: 'configuracoes', component: Configuracoes, canActivate: [authGuard] },
   { path: 'transacoes', component: Transacoes, canActivate: [authGuard] },
   { path: 'login',      component: Login,      canActivate: [publicGuard] },
   { path: 'cadastro',   component: Cadastro,   canActivate: [publicGuard] },
