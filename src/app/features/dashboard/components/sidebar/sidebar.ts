@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit, OnDestroy, ElementRef, ViewChild, ViewChildren, QueryList, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router, NavigationEnd } from '@angular/router';
 import { filter, Subscription } from 'rxjs';
 
@@ -18,16 +18,29 @@ export class Sidebar implements AfterViewInit, OnDestroy {
   private router = inject(Router);
   private sub!: Subscription;
 
+  menuMaisAberto = signal(false);
+
   ngAfterViewInit(): void {
     this.moverIndicador();
 
     this.sub = this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => this.moverIndicador());
+      .subscribe(() => {
+        this.moverIndicador();
+        this.menuMaisAberto.set(false);
+      });
   }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+  }
+
+  toggleMenuMais(): void {
+    this.menuMaisAberto.set(!this.menuMaisAberto());
+  }
+
+  fecharMenuMais(): void {
+    this.menuMaisAberto.set(false);
   }
 
   private moverIndicador(): void {

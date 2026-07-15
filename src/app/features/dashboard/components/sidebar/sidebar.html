@@ -71,8 +71,27 @@
     <i class="ti ti-settings"></i>
     <span>Configurações</span>
   </a>
-  <button class="bottom-nav-item bottom-nav-item--logout" (click)="logoutEvent.emit()">
-    <i class="ti ti-logout"></i>
-    <span>Sair</span>
+  <button class="bottom-nav-item" [class.active-mobile]="menuMaisAberto()" (click)="toggleMenuMais()">
+    <i class="ti ti-dots"></i>
+    <span>Mais</span>
   </button>
 </nav>
+
+@if (menuMaisAberto()) {
+  <div class="menu-mais-backdrop" (click)="fecharMenuMais()"></div>
+  <div class="menu-mais-painel">
+    <a class="menu-mais-item" routerLink="/seguranca" (click)="fecharMenuMais()">
+      <i class="ti ti-shield"></i>
+      <span>Segurança</span>
+    </a>
+    <a class="menu-mais-item" routerLink="/suporte" (click)="fecharMenuMais()">
+      <i class="ti ti-help-circle"></i>
+      <span>Suporte</span>
+    </a>
+    <hr class="menu-mais-divisor" />
+    <button class="menu-mais-item menu-mais-item--logout" (click)="logoutEvent.emit()">
+      <i class="ti ti-logout"></i>
+      <span>Sair</span>
+    </button>
+  </div>
+}
