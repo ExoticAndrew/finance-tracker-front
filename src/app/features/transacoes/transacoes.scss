@@ -40,6 +40,36 @@
   }
 }
 
+.topbar-acoes {
+  display: flex;
+  gap: 0.75rem;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.btn-importar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+  padding: 0.65rem 1.1rem;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+
+  &:hover {
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
+  }
+}
+
 .btn-nova {
   display: flex;
   align-items: center;

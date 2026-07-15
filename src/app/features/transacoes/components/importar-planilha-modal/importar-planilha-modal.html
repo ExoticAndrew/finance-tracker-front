@@ -1,0 +1,111 @@
+<div class="modal-overlay" (click)="fecharModal()">
+  <div class="modal-importar" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Importar transações via Excel</h2>
+      <button class="btn-fechar" (click)="fecharModal()">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      @if (linhas().length === 0 && !erroArquivo() && !processando()) {
+        <div class="area-formato">
+          <p class="titulo-formato">Formato esperado (.xlsx, cabeçalho na 1ª linha):</p>
+          <table class="tabela-exemplo">
+            <thead>
+              <tr>
+                <th>Data</th><th>Descrição</th><th>Valor</th><th>Tipo</th><th>Categoria</th><th>Observações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>15/01/2026</td><td>Salário</td><td>3500</td><td>Receita</td><td>Salário</td><td>(opcional)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="nota-formato">Máximo de 500 linhas e 2MB por arquivo.</p>
+        </div>
+
+        <label class="input-arquivo">
+          <input type="file" accept=".xlsx" (change)="onArquivoSelecionado($event)" hidden />
+          <i class="ti ti-upload"></i>
+          <span>Clique para selecionar o arquivo .xlsx</span>
+        </label>
+      }
+
+      @if (processando()) {
+        <p class="texto-processando">Lendo arquivo...</p>
+      }
+
+      @if (erroArquivo()) {
+        <div class="aviso-erro-arquivo">
+          <i class="ti ti-alert-triangle"></i>
+          <span>{{ erroArquivo() }}</span>
+        </div>
+        <label class="input-arquivo">
+          <input type="file" accept=".xlsx" (change)="onArquivoSelecionado($event)" hidden />
+          <i class="ti ti-upload"></i>
+          <span>Tentar outro arquivo</span>
+        </label>
+      }
+
+      @if (linhas().length > 0) {
+        <div class="resumo-preview">
+          <span class="resumo-item resumo-ok">
+            <i class="ti ti-circle-check"></i> {{ linhasValidas().length }} linha(s) válida(s)
+          </span>
+          @if (linhasComErro().length > 0) {
+            <span class="resumo-item resumo-erro">
+              <i class="ti ti-alert-triangle"></i> {{ linhasComErro().length }} linha(s) com erro
+            </span>
+          }
+        </div>
+
+        <div class="tabela-preview-wrapper">
+          <table class="tabela-preview">
+            <thead>
+              <tr>
+                <th>Linha</th><th>Descrição</th><th>Valor</th><th>Tipo</th><th>Categoria</th><th>Data</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (linha of linhas(); track linha.numeroLinha) {
+                <tr [class.linha-erro]="linha.erros.length > 0">
+                  <td>{{ linha.numeroLinha }}</td>
+                  <td>{{ linha.descricao }}</td>
+                  <td>{{ linha.valor ?? '—' }}</td>
+                  <td>{{ linha.tipo ?? '—' }}</td>
+                  <td>{{ linha.categoria ?? '—' }}</td>
+                  <td>{{ linha.data ?? '—' }}</td>
+                  <td>
+                    @if (linha.erros.length === 0) {
+                      <i class="ti ti-circle-check status-ok"></i>
+                    } @else {
+                      <span class="status-erro-texto">{{ linha.erros.join(', ') }}</span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        @if (erroEnvio()) {
+          <span class="mensagem-erro-envio">{{ erroEnvio() }}</span>
+        }
+      }
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-cancelar" (click)="fecharModal()" [disabled]="enviando()">Cancelar</button>
+      @if (linhas().length > 0) {
+        <button
+          class="btn-confirmar"
+          (click)="confirmarImportacao()"
+          [disabled]="linhasValidas().length === 0 || enviando()">
+          {{ enviando() ? 'Importando...' : 'Importar ' + linhasValidas().length + ' transação(ões)' }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

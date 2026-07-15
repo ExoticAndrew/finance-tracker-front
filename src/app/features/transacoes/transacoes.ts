@@ -5,11 +5,12 @@ import { EventosService } from '../../core/services/eventos';
 import { Sidebar } from '../dashboard/components/sidebar/sidebar';
 import { ListaTransacoes } from './components/lista-transacoes/lista-transacoes';
 import { ModalTransacao } from './components/modal-transacao/modal-transacao';
+import { ImportarPlanilhaModal } from './components/importar-planilha-modal/importar-planilha-modal';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-transacoes',
-  imports: [Sidebar, ListaTransacoes, ModalTransacao],
+  imports: [Sidebar, ListaTransacoes, ModalTransacao, ImportarPlanilhaModal],
   templateUrl: './transacoes.html',
   styleUrl: './transacoes.scss'
 })
@@ -18,7 +19,7 @@ export class Transacoes implements OnInit, OnDestroy {
   private eventosService = inject(EventosService);
   private sub!: Subscription;
   private authService = inject(AuthService);
-nomeUsuario = this.authService.getNome();
+  nomeUsuario = this.authService.getNome();
 
   transacoes = signal<Transacao[]>([]);
   totalElements = signal<number>(0);
@@ -27,6 +28,7 @@ nomeUsuario = this.authService.getNome();
   carregando = signal<boolean>(true);
   modalAberto = signal<boolean>(false);
   transacaoEditando = signal<Transacao | null>(null);
+  modalImportarAberto = signal<boolean>(false);
 
   ngOnInit(): void {
     this.carregar();
@@ -74,6 +76,20 @@ nomeUsuario = this.authService.getNome();
 
   onDeletado(): void {
     this.carregar(this.paginaAtual());
+  }
+
+  abrirModalImportar(): void {
+    this.modalImportarAberto.set(true);
+  }
+
+  fecharModalImportar(): void {
+    this.modalImportarAberto.set(false);
+  }
+
+  onImportado(): void {
+    this.fecharModalImportar();
+    this.carregar(this.paginaAtual());
+    this.eventosService.notificarAtualizacao();
   }
 
   logout(): void {

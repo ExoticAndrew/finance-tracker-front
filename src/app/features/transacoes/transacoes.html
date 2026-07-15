@@ -7,10 +7,16 @@
         <h1>Transações</h1>
         <p>Gerencie suas receitas e despesas</p>
       </div>
-      <button class="btn-nova" (click)="abrirModalNovo()">
-        <i class="ti ti-plus"></i>
-        Nova transação
-      </button>
+      <div class="topbar-acoes">
+        <button class="btn-importar" (click)="abrirModalImportar()">
+          <i class="ti ti-file-import"></i>
+          Importar Excel
+        </button>
+        <button class="btn-nova" (click)="abrirModalNovo()">
+          <i class="ti ti-plus"></i>
+          Nova transação
+        </button>
+      </div>
     </header>
 
     <div class="transacoes-content">
@@ -30,5 +36,11 @@
       [transacao]="transacaoEditando()"
       (fechar)="fecharModal()"
       (salvo)="onSalvo()" />
+  }
+
+  @if (modalImportarAberto()) {
+    <app-importar-planilha-modal
+      (fechar)="fecharModalImportar()"
+      (importado)="onImportado()" />
   }
 </div>

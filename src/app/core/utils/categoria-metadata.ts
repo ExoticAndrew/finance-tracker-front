@@ -45,3 +45,34 @@ export function corCategoria(categoria: string): string {
 export function labelCategoria(categoria: string): string {
   return LABELS[categoria] ?? categoria;
 }
+
+const LABELS_NORMALIZADOS: Record<string, string> = Object.entries(LABELS).reduce(
+  (acc, [chave, label]) => {
+    acc[normalizar(label)] = chave;
+    return acc;
+  },
+  {} as Record<string, string>
+);
+
+function normalizar(texto: string): string {
+  return texto
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toUpperCase();
+}
+
+/**
+ * Resolve uma categoria vinda de entrada externa (ex: planilha importada),
+ * aceitando tanto o nome técnico (SALARIO) quanto o amigável (Salário).
+ * Retorna null se não corresponder a nenhuma categoria válida.
+ */
+export function resolverCategoria(entrada: string): string | null {
+  if (!entrada) return null;
+  const normalizado = normalizar(entrada);
+
+  if (ICONES[normalizado] !== undefined) return normalizado;
+  if (LABELS_NORMALIZADOS[normalizado] !== undefined) return LABELS_NORMALIZADOS[normalizado];
+
+  return null;
+}

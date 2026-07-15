@@ -7,6 +7,7 @@ import { TemaService } from '../../core/services/tema';
 import { TransacaoService } from '../../core/services/transacao';
 import { UsuarioService, Usuario } from '../../core/services/usuario';
 import { Sidebar } from '../dashboard/components/sidebar/sidebar';
+import { sanitizarValorPlanilha } from '../../core/utils/sanitizar-formula';
 
 @Component({
   selector: 'app-configuracoes',
@@ -93,7 +94,13 @@ export class Configuracoes implements OnInit {
       next: (pagina) => {
         const cabecalho = ['Descrição', 'Valor', 'Tipo', 'Categoria', 'Data'].join(',');
         const linhas = pagina.content.map(t =>
-          [t.descricao, t.valor, t.tipo, t.categoria, t.data]
+          [
+            sanitizarValorPlanilha(t.descricao),
+            t.valor,
+            t.tipo,
+            t.categoria,
+            t.data
+          ]
             .map(v => `"${String(v).replace(/"/g, '""')}"`)
             .join(',')
         );

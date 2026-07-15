@@ -32,10 +32,12 @@ export interface ResumoMensal {
   totalReceitas: number;
   totalDespesas: number;
 }
+
 export interface CategoriaResumo {
   categoria: string;
   total: number;
 }
+
 export interface Extrato {
   saldoDeArrasto: number;
   transacoes: Transacao[];
@@ -57,12 +59,6 @@ export class TransacaoService {
   getSaldo(): Observable<number> {
     return this.http.get<number>(`${this.API_URL}/saldo`);
   }
-  getRankingCategorias(ano: number): Observable<CategoriaResumo[]> {
-    return this.http.get<CategoriaResumo[]>(`${this.API_URL}/resumo/categorias?ano=${ano}`);
-  }
-  getExtrato(ano: number): Observable<Extrato> {
-    return this.http.get<Extrato>(`${this.API_URL}/extrato?ano=${ano}`);
-  }
 
   getTotalPorTipo(tipo: 'RECEITA' | 'DESPESA'): Observable<number> {
     return this.http.get<number>(`${this.API_URL}/total/tipo/${tipo}`);
@@ -70,6 +66,10 @@ export class TransacaoService {
 
   criar(dados: any): Observable<Transacao> {
     return this.http.post<Transacao>(this.API_URL, dados);
+  }
+
+  criarEmLote(transacoes: any[]): Observable<Transacao[]> {
+    return this.http.post<Transacao[]>(`${this.API_URL}/lote`, { transacoes });
   }
 
   atualizar(id: number, dados: any): Observable<Transacao> {
@@ -82,6 +82,14 @@ export class TransacaoService {
 
   getResumoMensal(ano: number): Observable<ResumoMensal[]> {
     return this.http.get<ResumoMensal[]>(`${this.API_URL}/resumo/mensal?ano=${ano}`);
+  }
+
+  getRankingCategorias(ano: number): Observable<CategoriaResumo[]> {
+    return this.http.get<CategoriaResumo[]>(`${this.API_URL}/resumo/categorias?ano=${ano}`);
+  }
+
+  getExtrato(ano: number): Observable<Extrato> {
+    return this.http.get<Extrato>(`${this.API_URL}/extrato?ano=${ano}`);
   }
 
   getComparativoMensal(): Observable<ComparativoMensal> {
