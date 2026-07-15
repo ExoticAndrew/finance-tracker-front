@@ -1,4 +1,3 @@
-import * as XLSX from 'xlsx';
 import { resolverCategoria } from '../../../core/utils/categoria-metadata';
 import { sanitizarValorPlanilha } from '../../../core/utils/sanitizar-formula';
 
@@ -33,6 +32,7 @@ export async function parseArquivoExcel(file: File): Promise<ResultadoParse> {
 
   let linhasBrutas: any[];
   try {
+    const XLSX = await import('xlsx');
     const buffer = await file.arrayBuffer();
     const workbook = XLSX.read(buffer, { type: 'array', cellDates: true });
     const primeiraAba = workbook.SheetNames[0];
